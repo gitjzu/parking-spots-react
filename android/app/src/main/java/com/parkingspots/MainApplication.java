@@ -3,7 +3,6 @@ package com.parkingspots;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.reactnativenavigation.NavigationReactPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.reactlibrary.RNCardViewPackage;
 import com.facebook.react.ReactNativeHost;
@@ -26,7 +25,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new NavigationReactPackage(),
             new MapsPackage(),
             new RNCardViewPackage()
       );
@@ -36,11 +34,6 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
-  }
-
-  @Override
-  public List<ReactPackage> createAdditionalReactPackages() {
-      return getPackages();
   }
 
   @Override

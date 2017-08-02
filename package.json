@@ -11,7 +11,9 @@
 		"react-native": "0.46.4",
 		"react-native-cardview": "^1.0.4",
 		"react-native-maps": "^0.15.3",
-		"react-native-navigation": "^1.1.165"
+		"react-router": "^4.1.2",
+		"react-router-native": "^4.1.1",
+		"react-router-navigation": "^1.0.0-rc.3"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",

@@ -18,7 +18,10 @@ export default class Spot extends Component {
           liteMode
         >
         </MapView>
-        <Text style={styles.address}>Osoite</Text>
+        <Text style={styles.address}>
+          testi
+          {console.log(this.props)}
+        </Text>
       </CardView>
     )
   }
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   map: {
-    flex: 1,
+    height: 150,
   },
   address: {
     fontSize: 20,

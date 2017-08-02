@@ -11,15 +11,13 @@ import {
   Text,
   View
 } from 'react-native';
-import Spot from './jsx/Spot'
+import SpotList from './jsx/SpotList'
 
 export default class ParkingSpots extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Spot />
-        <Spot />
-        <Spot />
+        <SpotList />
       </View>
     );
   }
