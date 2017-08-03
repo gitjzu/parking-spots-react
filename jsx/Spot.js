@@ -9,18 +9,18 @@ export default class Spot extends Component {
       <CardView style={styles.container}> 
         <MapView 
           style={styles.map}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+          region={{
+            latitude: this.props.lat,
+            longitude: this.props.lon,
+            latitudeDelta: 0.022457779374775423,
+            longitudeDelta: 0.07127254085439123,
           }}
           liteMode
+          showsUserLocation
         >
         </MapView>
         <Text style={styles.address}>
-          testi
-          {console.log(this.props)}
+          {this.props.address}
         </Text>
       </CardView>
     )
@@ -29,10 +29,10 @@ export default class Spot extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    marginRight: 5,
   },
   map: {
-    height: 150,
+    height: 150
   },
   address: {
     fontSize: 20,
