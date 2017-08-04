@@ -1,27 +1,27 @@
 import React, { Component } from 'react'
+import { View, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class Toolbar extends Component {
   render(){
     return(
-     <Icon.ToolbarAndroid
-      style={{height: 56, backgroundColor: '#00A4C0'}}
-      title="Parking Spots"
-      titleColor="white"
-      navIconName="md-menu"
-      onIconClicked={this.onActionSelected}
-      actions={[
-        { title: 'Settings', iconName: 'md-settings', iconSize: 30, show: 'never' },
-      ]}
-      overflowIconName="md-more"
-    />
+      <View>
+        { Platform.OS === 'android' && Platform.Version >= 20 ?
+            <View
+              style={{
+                height: 24,
+                backgroundColor: "#304ffe",
+              }}
+            />
+            : null }
+        <Icon.ToolbarAndroid
+          style={{height: 56, backgroundColor: '#304ffe'}}
+          title="Parking Spots"
+          titleColor="white"
+          navIconName="md-menu"
+          onIconClicked={() => this.props.navBarRef.openDrawer()}
+        />
+      </View>
     )
-  }
-}
-
-const onActionSelected = (position) => {
-  console.log('selected position was: ' + position)
-  if (position === 0) { // index of 'Settings'
-
   }
 }

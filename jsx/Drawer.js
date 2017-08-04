@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, DrawerLayoutAndroid } from 'react-native'
+import { View, Text, Button, StyleSheet, DrawerLayoutAndroid, TouchableHighlight, StatusBar, Platform } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Toolbar from './Toolbar'
 
 export default class Drawer extends Component {
@@ -8,16 +9,55 @@ export default class Drawer extends Component {
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => this.navigationView}>
-          <Toolbar />
+        renderNavigationView={() => <NavigationView />}
+        ref={'navDrawer'}
+        >
+          <Toolbar navBarRef={this.refs.navDrawer}/>
           {this.props.children}
       </DrawerLayoutAndroid>
     )
   }
 }
 
-const navigationView = (
-    <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
-    </View>
-  )
+class NavigationView extends Component {
+  render() {
+    return (
+      <View>
+        <StatusBar
+          translucent
+          backgroundColor="rgba(0, 0, 0, 0.20)"
+          animated
+        />
+    
+        <View style={{height:185, backgroundColor:'#0092DB', justifyContent: 'flex-end'}}>
+          <Icon name="local-parking" size={80} color="#FFFFFF" />
+          <View style={{marginLeft: 20, marginBottom: 10}} >
+            <Text style={{color: '#FFFFFF'}} >Free 24H parking</Text>
+            <Text style={{color: '#FFFFFF'}} >Version 0.1</Text>
+          </View>
+        </View>
+        <View>
+          <NavigationItem />
+          <NavigationItem />
+          <NavigationItem />
+          <NavigationItem />
+        </View>
+      </View>
+    )
+  }
+}
+
+class NavigationItem extends Component {
+  render() {
+    return (
+      <View style={{marginTop: 5}}>
+        <TouchableHighlight underlayColor='rgba(188, 187, 185, 0.8)' onPress={() => console.log('test')}>
+          <View style={{ marginTop: 10, marginLeft: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
+            <Icon name="info" size={35} color="gray" />
+            <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >Info</Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    )
+  }
+}
