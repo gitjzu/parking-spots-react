@@ -1,33 +1,18 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, FlatList, Text } from 'react-native'
+import data from '../long_term_parking.json'
 import Spot from './Spot'
 
 export default class SpotList extends Component {
 
   constructor() {
     super()
+
     this.state = {
       userLatitude: null,
       userLongitude: null,
       error: null,
-      locationList: [
-        {address: 'OSOITE a'}, 
-        {address: 'OSOITE b'}, 
-        {address: 'OSOITE c'}, 
-        {address: 'OSOITE d'},
-        {address: 'OSOITE e'}, 
-        {address: 'OSOITE f'}, 
-        {address: 'OSOITE g'}, 
-        {address: 'OSOITE h'},
-        {address: 'OSOITE i'}, 
-        {address: 'OSOITE j'}, 
-        {address: 'OSOITE k'}, 
-        {address: 'OSOITE l'},
-        {address: 'OSOITE m'}, 
-        {address: 'OSOITE n'}, 
-        {address: 'OSOITE o'}, 
-        {address: 'OSOITE p'},
-      ]
+      locationList: data.features
     } 
   }
 
@@ -56,21 +41,18 @@ export default class SpotList extends Component {
           latitude: 
           {this.state.userLatitude}
         </Text>
-        {this.state.userLatitude && 
           <FlatList style={styles.container}
             data={this.state.locationList} 
-            keyExtractor={item => item.address}
+            keyExtractor={item => item.properties.Id}
             renderItem={({item}) => {
               return (
                 <Spot 
-                  address={item.address} 
-                  lat={this.state.userLatitude}
-                  lon={this.state.userLongitude}
+                  address={item.properties.name} 
+                  coordinates={item.geometry.coordinates}
                 />
                 )
               }}
           />
-        }
       </View>
     )
   }

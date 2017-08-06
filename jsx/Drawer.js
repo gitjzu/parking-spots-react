@@ -36,11 +36,10 @@ class NavigationView extends Component {
             <Text style={{color: '#FFFFFF'}} >Version 0.1</Text>
           </View>
         </View>
-        <View>
-          <NavigationItem />
-          <NavigationItem />
-          <NavigationItem />
-          <NavigationItem />
+        <View style={{marginBottom: 10}}>
+          <NavigationItem iconName="info" name="Info"/>
+          <NavigationItem iconName="email" name="Contact"/>
+          <NavigationItem iconName="share" name="Share with friends"/>
         </View>
       </View>
     )
@@ -50,11 +49,11 @@ class NavigationView extends Component {
 class NavigationItem extends Component {
   render() {
     return (
-      <View style={{marginTop: 5}}>
+      <View>
         <TouchableHighlight underlayColor='rgba(188, 187, 185, 0.8)' onPress={() => console.log('test')}>
           <View style={{ marginTop: 10, marginLeft: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name="info" size={35} color="gray" />
-            <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >Info</Text>
+            <Icon name={this.props.iconName} size={35} color="gray" />
+            <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >{this.props.name}</Text>
           </View>
         </TouchableHighlight>
       </View>
