@@ -1,5 +1,10 @@
 import React, { PureComponent } from 'react'
-import { View, Text, Button, StyleSheet } from 'react-native'
+import { 
+  View, 
+  Text, 
+  Button, 
+  StyleSheet
+} from 'react-native'
 import MapView from 'react-native-maps'
 import CardView from 'react-native-cardview'
 
@@ -13,16 +18,9 @@ export default class Spot extends PureComponent {
   }
 
   componentDidMount() {
-    let parsedCoordinates = parseCoordinates(this.props.coordinates)
-    let region
-    if (Array.isArray(this.props.coordinates[0])) {
-      region = regionFrom(this.props.coordinates[0][1], this.props.coordinates[0][0])
-    } else {
-      region = regionFrom(this.props.coordinates[1], this.props.coordinates[0])
-    }
+    region = regionFrom(this.props.lat, this.props.lon)
 
     this.setState({
-      coords: parsedCoordinates,
       region
     })
   }
@@ -37,7 +35,7 @@ export default class Spot extends PureComponent {
             liteMode={true}
           >
             <MapView.Polyline 
-              coordinates={this.state.coords}
+              coordinates={this.props.coordinates}
               strokeWidth={5}
               strokeColor='#304ffe'
             />
@@ -49,17 +47,6 @@ export default class Spot extends PureComponent {
       </CardView>
     )
   }
-}
-
-const parseCoordinates = (coordinates) => {
-  const coords = []
-    coordinates.forEach((coordinatePair) => {
-      coords.push({
-        latitude: coordinatePair[1],
-        longitude: coordinatePair[0]
-      })
-    })
-  return coords
 }
 
 const styles = StyleSheet.create({

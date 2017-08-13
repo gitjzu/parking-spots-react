@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, DrawerLayoutAndroid } from 'react-native'
+import { 
+  View, 
+  Text,
+  Button,
+  StyleSheet,
+  DrawerLayoutAndroid
+} from 'react-native'
+import { graphql } from 'react-apollo'
+import gql from 'graphql-tag'
 import SpotList from './SpotList'
 import Drawer from './Drawer'
 
@@ -8,9 +16,22 @@ export default class App extends Component {
     return (
       <View style={{flex: 1}}>
         <Drawer>
-          <SpotList />
+          <SpotListWithData />
         </Drawer>
       </View>
     )
   }
 }
+
+const SpotListWithData = graphql(gql`{
+  allSpots {
+    id
+    spot_name
+    lat
+    lon
+    coordinates{
+      latitude
+      longitude
+    }
+  }
+}`, { options: { notifyOnNetworkStatusChange: true } })(SpotList);

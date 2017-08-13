@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, DrawerLayoutAndroid, TouchableHighlight, StatusBar, Platform } from 'react-native'
+import { 
+  View,
+  Text,
+  Button, 
+  StyleSheet, 
+  DrawerLayoutAndroid, 
+  TouchableHighlight, 
+  StatusBar, 
+  Platform
+} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Toolbar from './Toolbar'
 
