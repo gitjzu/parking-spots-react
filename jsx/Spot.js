@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { 
   View, 
   Text, 
@@ -6,11 +6,12 @@ import {
   StyleSheet
 } from 'react-native'
 import MapView from 'react-native-maps'
+import { Link } from 'react-router-native'
 import CardView from 'react-native-cardview'
 
-import { regionFrom } from './util'
+import { regionFrom, distance } from './util'
 
-export default class Spot extends PureComponent {
+export default class Spot extends Component {
   constructor() {
     super()
 
@@ -26,25 +27,51 @@ export default class Spot extends PureComponent {
   }
 
   render() {
+    const {
+      userLat,
+      userLon,
+      lat,
+      lon,
+      coordinates,
+      address
+    } = this.props
+
+
     return (
-      <CardView style={styles.container}>
-        {this.state.region && 
-          <MapView 
-            style={styles.map}
-            region={this.state.region}
-            liteMode={true}
-          >
-            <MapView.Polyline 
-              coordinates={this.props.coordinates}
-              strokeWidth={5}
-              strokeColor='#304ffe'
-            />
-          </MapView>
-        }
-        <Text style={styles.address}>
-          {this.props.address}
-        </Text>
-      </CardView>
+      <Link to={{
+        pathname: '/spot',
+        state: {spot: this.props, region: this.state.region},
+        }} >
+        <CardView style={styles.container}>
+          {this.state.region && 
+            <MapView 
+              style={styles.map}
+              region={this.state.region}
+              liteMode={true}
+              toolbarEnabled={false}
+            >
+              <MapView.Polyline 
+                coordinates={coordinates}
+                strokeWidth={5}
+                strokeColor='#304ffe'
+              />
+            </MapView>
+          }
+          <View style={styles.cardBottom} >
+            <Text style={styles.address}>
+              {address}
+            </Text>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              {userLat && userLon &&
+                <Text style={{marginRight: 10}}>
+                  ({distance(lat, lon, userLat, userLon).toFixed(1)}km)
+                </Text>
+              }
+              <Button title='Navigoi tänne' onPress={() => console.log('test')} />
+            </View>
+          </View>
+        </CardView>
+      </Link>
     )
   }
 }
@@ -52,6 +79,14 @@ export default class Spot extends PureComponent {
 const styles = StyleSheet.create({
   container: {
     marginRight: 5,
+  },
+  cardBottom: {
+    flexDirection: 'row', 
+    flex: 1, 
+    marginBottom: 8, 
+    marginRight: 8, 
+    justifyContent: 'space-between', 
+    alignItems: 'center',
   },
   map: {
     height: 150
