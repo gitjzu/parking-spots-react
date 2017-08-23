@@ -8,16 +8,14 @@ import {
 } from 'react-native'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Card } from 'react-router-navigation'
 import SpotList from './SpotList'
-import Drawer from './Drawer'
 
 export default class App extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <Drawer>
-          <SpotListWithData />
-        </Drawer>
+        <SpotListWithData />
       </View>
     )
   }

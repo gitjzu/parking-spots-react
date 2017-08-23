@@ -9,20 +9,32 @@ import {
   StatusBar, 
   Platform
 } from 'react-native'
+import { Link } from 'react-router-native'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Toolbar from './Toolbar'
 
 export default class Drawer extends Component {
+  constructor() {
+    super()
+    this.openDrawer = this.openDrawer.bind(this)
+    this.closeDrawer = this.closeDrawer.bind(this)
+  }
+
+  openDrawer() {
+    this.drawer.openDrawer();
+  }
+  closeDrawer() {
+    this.drawer.closeDrawer();
+  }
+
   render() {
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => <NavigationView />}
-        ref={'navDrawer'}
+        renderNavigationView={() => <NavigationView closeDrawer={this.closeDrawer} />}
         >
-          <Toolbar navBarRef={this.refs.navDrawer}/>
-          {this.props.children}
+        {this.props.children}
       </DrawerLayoutAndroid>
     )
   }
@@ -46,9 +58,10 @@ class NavigationView extends Component {
           </View>
         </View>
         <View style={{marginBottom: 10}}>
-          <NavigationItem iconName="info" name="Info"/>
-          <NavigationItem iconName="email" name="Contact"/>
-          <NavigationItem iconName="share" name="Share with friends"/>
+          <NavigationItem iconName="format-list-bulleted" name="Paikat" to='/' closeDrawer={this.props.closeDrawer}/> 
+          <NavigationItem iconName="info" name="Info" to='/'/>
+          <NavigationItem iconName="email" name="Contact" to='/'/>
+          <NavigationItem iconName="share" name="Share with friends" to='/'/>
         </View>
       </View>
     )
@@ -58,14 +71,12 @@ class NavigationView extends Component {
 class NavigationItem extends Component {
   render() {
     return (
-      <View>
-        <TouchableHighlight underlayColor='rgba(188, 187, 185, 0.8)' onPress={() => console.log('test')}>
-          <View style={{ marginTop: 10, marginLeft: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
-            <Icon name={this.props.iconName} size={35} color="gray" />
-            <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >{this.props.name}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
+      <Link to={this.props.to}>
+        <View style={{ marginTop: 10, marginLeft: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
+          <Icon name={this.props.iconName} size={35} color="gray" />
+          <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >{this.props.name}</Text>
+        </View>
+      </Link>
     )
   }
 }
