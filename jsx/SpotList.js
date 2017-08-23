@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { 
   View,
   StyleSheet,
-  FlatList,
-  Text
+  Text,
+  ActivityIndicator
 } from 'react-native'
+import { OptimizedFlatList } from 'react-native-optimized-flatlist'
 import Spot from './Spot'
 
 export default class SpotList extends Component {
@@ -44,9 +45,13 @@ export default class SpotList extends Component {
           latitude: 
           {this.state.userLatitude}
         </Text>
-          <FlatList style={styles.container}
+          {this.props.data.loading ? 
+          <ActivityIndicator/>
+          :
+          <OptimizedFlatList style={styles.container}
             data={this.props.data.allSpots} 
             keyExtractor={item => item.id}
+            initialNumToRender={10}
             refreshing={this.props.data.networkStatus === 4}
             onRefresh={this.props.data.refetch}
             renderItem={({item}) => {
@@ -56,10 +61,14 @@ export default class SpotList extends Component {
                   coordinates={item.coordinates}
                   lat={item.lat}
                   lon={item.lon}
+                  userLat={this.state.userLatitude}
+                  userLon={this.state.userLongitude}
                 />
                 )
               }}
           />
+          }
+
       </View>
     )
   }
