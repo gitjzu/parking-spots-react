@@ -13,9 +13,8 @@ import {
 } from 'react-native'
 import { NativeRouter, Link } from 'react-router-native'
 import { Navigation, Card } from 'react-router-navigation'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons'
 import { api } from './configs/config.js'
-import DetailedSpot from './jsx/DetailedSpot'
 import MenuButton from './jsx/MenuButton'
 import Drawer from './jsx/Drawer'
 import App from './jsx/App'
@@ -55,10 +54,6 @@ export default class ParkingSpots extends Component {
                 path="/"
                 component={App}
                 renderLeftButton={() => <MenuButton/>}
-              />
-              <Card
-                path="/spot"
-                component={DetailedSpot}
               />
             </Navigation>
           </Drawer>

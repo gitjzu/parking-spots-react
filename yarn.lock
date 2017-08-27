@@ -3251,6 +3251,14 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
+react-native-fab@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/react-native-fab/-/react-native-fab-1.0.5.tgz#1b503727becb63148b251020bbbcfc39234442ac"
+
+react-native-google-maps-directions@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-google-maps-directions/-/react-native-google-maps-directions-1.1.2.tgz#a362a9c3c266d9c7e853696e2ffe99193f67d64d"
+
 react-native-maps@^0.15.3:
   version "0.15.3"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.15.3.tgz#5d9e0a8e30ecc51dc755b7a3b9d6b6ed5e2dd08c"
@@ -3258,6 +3266,10 @@ react-native-maps@^0.15.3:
 react-native-optimized-flatlist@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/react-native-optimized-flatlist/-/react-native-optimized-flatlist-1.0.1.tgz#dbee82f208b48bef23c6cb26f1d5f3ac58e675b2"
+
+react-native-snackbar-component@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar-component/-/react-native-snackbar-component-1.0.7.tgz#3298629df424e7c90190d4d4f64dde421d857933"
 
 react-native-tab-view@0.0.65, react-native-tab-view@^0.0.65:
   version "0.0.65"

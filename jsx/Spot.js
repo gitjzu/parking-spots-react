@@ -6,8 +6,8 @@ import {
   StyleSheet
 } from 'react-native'
 import MapView from 'react-native-maps'
-import { Link } from 'react-router-native'
 import CardView from 'react-native-cardview'
+import getDirections from 'react-native-google-maps-directions'
 
 import { regionFrom, distance } from './util'
 
@@ -38,41 +38,53 @@ export default class Spot extends Component {
 
 
     return (
-      <Link to={{
-        pathname: '/spot',
-        state: {spot: this.props, region: this.state.region},
-        }} >
-        <CardView style={styles.container}>
-          {this.state.region && 
-            <MapView 
-              style={styles.map}
-              region={this.state.region}
-              liteMode={true}
-              toolbarEnabled={false}
-            >
-              <MapView.Polyline 
-                coordinates={coordinates}
-                strokeWidth={5}
-                strokeColor='#304ffe'
-              />
-            </MapView>
-          }
-          <View style={styles.cardBottom} >
-            <Text style={styles.address}>
-              {address}
+      <CardView style={styles.container}>
+        {this.state.region && 
+          <MapView 
+            style={styles.map}
+            region={this.state.region}
+            liteMode={true}
+            toolbarEnabled={false}
+          >
+            <MapView.Polyline 
+              coordinates={coordinates}
+              strokeWidth={5}
+              strokeColor='#304ffe'
+            />
+          </MapView>
+        }
+        <View style={styles.cardBottom} >
+          <Text style={styles.address}>
+            {address}
+          </Text>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={{marginRight: 10}}>
+            {userLat ?
+              <Text>
+              ({distance(lat, lon, userLat, userLon).toFixed(1)} km)
+              </Text>
+              :
+              <Text>
+              -- km
+              </Text>
+            }
             </Text>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              {userLat && userLon &&
-                <Text style={{marginRight: 10}}>
-                  ({distance(lat, lon, userLat, userLon).toFixed(1)}km)
-                </Text>
-              }
-              <Button title='Navigoi tänne' onPress={() => console.log('test')} />
-            </View>
+            <Button title='Navigoi tänne' onPress={this.navigate} />
           </View>
-        </CardView>
-      </Link>
+        </View>
+      </CardView>
     )
+  }
+
+  navigate = () => {
+    const data = {
+      destination: {
+        latitude: this.props.lat,
+        longitude: this.props.lon,
+      },
+      params: []
+    }
+    getDirections(data)
   }
 }
 
@@ -95,4 +107,4 @@ const styles = StyleSheet.create({
     fontSize: 20,
     margin: 10,
   },
-});
+})
