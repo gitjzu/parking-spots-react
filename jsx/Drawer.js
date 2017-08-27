@@ -10,7 +10,7 @@ import {
   Platform
 } from 'react-native'
 import { Link } from 'react-router-native'
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import Toolbar from './Toolbar'
 
 export default class Drawer extends Component {
@@ -21,10 +21,10 @@ export default class Drawer extends Component {
   }
 
   openDrawer() {
-    this.drawer.openDrawer();
+    this.drawer.openDrawer()
   }
   closeDrawer() {
-    this.drawer.closeDrawer();
+    this.drawer.closeDrawer()
   }
 
   render() {

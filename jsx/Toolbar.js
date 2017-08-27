@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons'
 
 export default class Toolbar extends Component {
   render(){

@@ -9,6 +9,7 @@ import {
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Card } from 'react-router-navigation'
+
 import SpotList from './SpotList'
 
 export default class App extends Component {
@@ -32,4 +33,4 @@ const SpotListWithData = graphql(gql`{
       longitude
     }
   }
-}`, { options: { notifyOnNetworkStatusChange: true } })(SpotList);
+}`, { options: { notifyOnNetworkStatusChange: true } })(SpotList)
