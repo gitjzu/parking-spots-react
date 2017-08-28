@@ -9,7 +9,7 @@ import MapView from 'react-native-maps'
 import CardView from 'react-native-cardview'
 import getDirections from 'react-native-google-maps-directions'
 
-import { regionFrom, distance } from './util'
+import { regionFrom } from './util'
 
 export default class Spot extends Component {
   constructor() {
@@ -28,8 +28,7 @@ export default class Spot extends Component {
 
   render() {
     const {
-      userLat,
-      userLon,
+      distance,
       lat,
       lon,
       coordinates,
@@ -59,13 +58,13 @@ export default class Spot extends Component {
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Text style={{marginRight: 10}}>
-            {userLat ?
+            {distance ?
               <Text>
-              ({distance(lat, lon, userLat, userLon).toFixed(1)} km)
+                {distance} km
               </Text>
               :
               <Text>
-              -- km
+                -- km
               </Text>
             }
             </Text>
