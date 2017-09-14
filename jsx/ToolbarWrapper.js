@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { View, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { Toolbar } from 'react-native-material-ui'
 
-export default class Toolbar extends Component {
+export default class ToolbarWrapper extends Component {
   render(){
     return(
       <View>
@@ -14,13 +15,15 @@ export default class Toolbar extends Component {
               }}
             />
             : null }
-        <Icon.ToolbarAndroid
-          style={{height: 56, backgroundColor: '#304ffe'}}
-          title="Parking Spots"
-          titleColor="white"
-          navIconName="md-menu"
-          onIconClicked={() => this.props.navBarRef.openDrawer()}
-        />
+            <Toolbar
+              leftElement="menu"
+              centerElement="Parking Spots"
+              searchable={{
+                autoFocus: true,
+                placeholder: 'Search by name',
+                onChangeText: (value) => {console.log(value)},
+              }}
+            />
       </View>
     )
   }

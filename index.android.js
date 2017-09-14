@@ -2,22 +2,23 @@ import React, { Component } from 'react'
 import { 
   ApolloClient, 
   ApolloProvider,
-  createNetworkInterface
+  createNetworkInterface,
 } from 'react-apollo'
 import {
   AppRegistry,
   StyleSheet,
-  Text,
-  View,
-  Platform
+  NativeModules,
 } from 'react-native'
-import { NativeRouter, Link } from 'react-router-native'
-import { Navigation, Card } from 'react-router-navigation'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { ThemeProvider } from 'react-native-material-ui'
+
 import { api } from './configs/config.js'
-import MenuButton from './jsx/MenuButton'
-import Drawer from './jsx/Drawer'
 import App from './jsx/App'
+
+const { UIManager } = NativeModules
+
+UIManager.setLayoutAnimationEnabledExperimental &&
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+
 
 export default class ParkingSpots extends Component {
   createClient() {
@@ -31,51 +32,19 @@ export default class ParkingSpots extends Component {
   render() {
     return (
       <ApolloProvider client={this.createClient()}>
-        <NativeRouter>
-          <Drawer>
-            { Platform.OS === 'android' && Platform.Version >= 20 ?
-            <View
-              style={{
-                height: 24,
-                backgroundColor: "#304ffe",
-              }}
-            />
-            : null }
-            <Navigation
-              navBarStyle={navBarStyles.navBar}
-              titleStyle={navBarStyles.title}
-              backButtonTintColor='white'
-              backButtonTitle='Takaisin'
-              title='Parking Spots'
-            >
-              <Card
-                style={styles.container}
-                exact
-                path="/"
-                component={App}
-                renderLeftButton={() => <MenuButton/>}
-              />
-            </Navigation>
-          </Drawer>
-        </NativeRouter> 
+        <ThemeProvider uiTheme={uiTheme} >
+          <App />
+        </ThemeProvider>
       </ApolloProvider>
     )
   }
 }
 
-const navBarStyles = StyleSheet.create({
-  navBar: {
-    backgroundColor: '#304ffe',
-  },
-  title: {
-    color: 'white'
+const uiTheme = {
+  palette: {
+    primaryColor: '#304ffe',
+    accentColor: '#FF4081',
   }
-})
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
+}
 
 AppRegistry.registerComponent('ParkingSpots', () => ParkingSpots)

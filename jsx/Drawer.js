@@ -11,33 +11,30 @@ import {
 } from 'react-native'
 import { Link } from 'react-router-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import Toolbar from './Toolbar'
+import { ListItem } from 'react-native-material-ui'
 
 export default class Drawer extends Component {
-  constructor() {
-    super()
-    this.openDrawer = this.openDrawer.bind(this)
-    this.closeDrawer = this.closeDrawer.bind(this)
-  }
-
-  openDrawer() {
-    this.drawer.openDrawer()
-  }
-  closeDrawer() {
-    this.drawer.closeDrawer()
-  }
-
   render() {
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        renderNavigationView={() => <NavigationView closeDrawer={this.closeDrawer} />}
+        ref={(_drawer) => this.drawer = _drawer}
+        renderNavigationView={() => (
+          <NavigationView 
+            closeDrawer={this.close}
+            history={this.props.history}
+            location={this.props.location}
+          />
+          )}
         >
         {this.props.children}
       </DrawerLayoutAndroid>
     )
   }
+
+  open = () => this.drawer.openDrawer()
+  close = () => this.drawer.closeDrawer()
 }
 
 class NavigationView extends Component {
@@ -46,22 +43,30 @@ class NavigationView extends Component {
       <View>
         <StatusBar
           translucent
-          backgroundColor="rgba(0, 0, 0, 0.20)"
+          backgroundColor='rgba(0, 0, 0, 0.20)'
           animated
         />
-    
         <View style={{height:185, backgroundColor:'#0092DB', justifyContent: 'flex-end'}}>
-          <Icon name="local-parking" size={80} color="#FFFFFF" />
-          <View style={{marginLeft: 20, marginBottom: 10}} >
-            <Text style={{color: '#FFFFFF'}} >Free 24H parking</Text>
-            <Text style={{color: '#FFFFFF'}} >Version 0.1</Text>
+          <Icon name='local-parking' size={80} color='#FFFFFF' />
+          <View style={{marginLeft: 20, marginBottom: 10}}>
+            <Text style={{color: '#FFFFFF'}} >Helsingin ilmaiset 24H parkit</Text>
+            <Text style={{color: '#FFFFFF'}} >Versio 0.1</Text>
           </View>
         </View>
         <View style={{marginBottom: 10}}>
-          <NavigationItem iconName="format-list-bulleted" name="Paikat" to='/' closeDrawer={this.props.closeDrawer}/> 
-          <NavigationItem iconName="info" name="Info" to='/'/>
-          <NavigationItem iconName="email" name="Contact" to='/'/>
-          <NavigationItem iconName="share" name="Share with friends" to='/'/>
+          {menuItems.map((item, i) => {
+            return (
+              <NavigationItem 
+                key={i}
+                iconName={item.iconName} 
+                name={item.name}
+                to={item.to}
+                closeDrawer={this.props.closeDrawer} 
+                history={this.props.history}
+                location={this.props.location}
+              /> 
+            )
+          })}
         </View>
       </View>
     )
@@ -71,12 +76,49 @@ class NavigationView extends Component {
 class NavigationItem extends Component {
   render() {
     return (
-      <Link to={this.props.to}>
-        <View style={{ marginTop: 10, marginLeft: 20, marginBottom: 10, flexDirection: 'row', alignItems: 'center'}}>
-          <Icon name={this.props.iconName} size={35} color="gray" />
-          <Text style={{color: '#000000', paddingLeft: 30, fontSize: 20, }} >{this.props.name}</Text>
-        </View>
-      </Link>
+      <View>
+        <ListItem
+          dense
+          key={this.props.name}
+          leftElement={<Icon name={this.props.iconName} size={30}/>}
+          centerElement={this.props.name}
+          onPress={this.handlePress}
+          style={{}}
+          numberOfLines={2}
+        />
+      </View>
     )
   }
+  handlePress = () => {
+    const { history, closeDrawer, to, location } = this.props
+
+    if (location.pathname !== to) {
+      history.push(to)  
+    }
+    
+    closeDrawer()
+  }
 }
+
+const menuItems = [
+  {
+    iconName: 'format-list-bulleted',
+    name: 'Paikat',
+    to: '/',
+  },
+  {
+    iconName: 'info',
+    name: 'UKK',
+    to: '/ukk',
+  },
+  {
+    iconName: 'email',
+    name: 'Anna palautetta',
+    to: '/',
+  },
+  {
+    iconName: 'share',
+    name: 'Jaa kavereiden kanssa',
+    to: '/',
+  }
+]
