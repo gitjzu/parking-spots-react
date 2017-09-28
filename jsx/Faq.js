@@ -4,6 +4,7 @@ import {
   Text,
   Button,
   StyleSheet,
+  Linking,
 } from 'react-native'
 import CardView from 'react-native-cardview'
 
@@ -14,18 +15,18 @@ export default class Faq extends Component {
         
         <CardView style={styles.card}>
           <Text style={{fontWeight: 'bold'}}>Kysymys:</Text>
-          <Text style={styles.question}>Miksi tässä sovelluksessä näkyy eri kilometri etäisyys, kuin Googlen karttasovelluksessa?</Text>
+          <Text style={styles.question}>Miksi Ilmaisparkki-sovelluksessa näkyy eri kilometri etäisyys, kuin Googlen karttasovelluksessa?</Text>
 
           <Text style={{fontWeight: 'bold'}}>Vastaus:</Text>
-          <Text style={styles.answer}>Tämän sovelluksen laskema etäisyys on vain suuntaa antava, sillä se lasketaan ns. linnuntietä </Text>
+          <Text style={styles.answer}>Ilmaisparkki-sovelluksen laskema etäisyys on vain suuntaa antava, koska se lasketaan ns. linnuntietä </Text>
         </CardView>
 
         <CardView style={styles.card}>
           <Text style={{fontWeight: 'bold'}}>Kysymys:</Text>
-          <Text style={styles.question}>Mistä sovellus saa tiedot parkkipaikoista</Text>
+          <Text style={styles.question}>Mistä Ilmaisparkki-sovellus saa tiedot parkkipaikoista?</Text>
 
           <Text style={{fontWeight: 'bold'}}>Vastaus:</Text>
-          <Text style={styles.answer}>Tiedot parkkipaikoista tulevat täältä: http://tinyurl.com/y73zcj8s</Text>
+          <Text style={styles.answer} onPress={() => Linking.openURL('http://tinyurl.com/y73zcj8s')}>Tiedot parkkipaikoista tulevat täältä:  http://tinyurl.com/y73zcj8s</Text>
         </CardView>
 
         <CardView style={styles.card}>
