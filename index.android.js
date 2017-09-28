@@ -10,6 +10,10 @@ import {
   NativeModules,
 } from 'react-native'
 import { ThemeProvider } from 'react-native-material-ui'
+import {  
+  withRouter, 
+  NativeRouter, 
+} from 'react-router-native'
 
 import { api } from './configs/config.js'
 import App from './jsx/App'
@@ -33,12 +37,17 @@ export default class ParkingSpots extends Component {
     return (
       <ApolloProvider client={this.createClient()}>
         <ThemeProvider uiTheme={uiTheme} >
-          <App />
+          <NativeRouter>
+            <AppWithRouter />
+          </NativeRouter>
         </ThemeProvider>
       </ApolloProvider>
     )
   }
 }
+
+//Inject router history prop through withRouter to App component
+const AppWithRouter = withRouter(App)
 
 const uiTheme = {
   palette: {

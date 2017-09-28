@@ -12,11 +12,7 @@ import {
   Card,
   Navigation,
 } from 'react-router-navigation'
-import { 
-  Link, 
-  withRouter, 
-  NativeRouter, 
-} from 'react-router-native'
+import { Link } from 'react-router-native'
 
 import Drawer from './Drawer'
 import MainScreen from './MainScreen'
@@ -25,31 +21,64 @@ import ToolbarWrapper from './ToolbarWrapper'
 
 export default class App extends Component {
 
+  constructor() {
+    super()
+
+    this.state = {
+      drawerOpen: false,
+    }
+  }
+
+
   render() {
     return (
-      <NativeRouter>
-        <DrawerWithRouter>
-          <Navigation renderNavBar={() => <ToolbarWrapper/>}>
-            <Card
-              style={styles.container}
-              exact
-              path='/'
-              component={MainScreen}
-            />
-            <Card
-              style={styles.container}
-              path='/ukk'
-              component={Faq}
-            />
-          </Navigation>
-        </DrawerWithRouter>
-      </NativeRouter> 
+      <Drawer 
+        isOpen={this.state.drawerOpen} 
+        onDrawerOpen={this.openDrawer}
+        onDrawerClose={this.closeDrawer}
+        history={this.props.history}
+        location={this.props.location} 
+      >
+        <Navigation>
+          <Card
+            style={styles.container}
+            exact
+            path='/'
+            component={MainScreen}
+            renderNavBar={() => (
+              <ToolbarWrapper
+                title='Ilmaisparkki'
+                leftIcon='menu'
+                search={true}
+                action={() => this.openDrawer()}
+              />
+            )}
+          />
+          <Card
+            style={styles.container}
+            path='/ukk'
+            component={Faq}
+            renderNavBar={() => (
+              <ToolbarWrapper
+                title='Usein kysytyt kysymykset'
+                leftIcon='arrow-back'
+                search={false}
+                action={() => this.props.history.goBack()}
+              />
+            )}
+          />
+        </Navigation>
+      </Drawer>
     )
   }
-}
 
-//Inject router history prop through withRouter to Drawer component
-const DrawerWithRouter = withRouter(Drawer)
+  openDrawer = () => {
+    this.setState({drawerOpen: true})
+  }
+  closeDrawer = () => {
+    this.setState({drawerOpen: false})
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

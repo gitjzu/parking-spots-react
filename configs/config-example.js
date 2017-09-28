@@ -5,5 +5,7 @@
 
 module.exports = {
   api: 'http://localhost:8888/api',
-  bannerAdUnitId: 'ca-app-pub-3940256099942544/6300978111' 
+  bannerAdUnitId: 'ca-app-pub-3940256099942544/6300978111',
+  devEmail: 'test@test.com',
+  linkToPlayStore: ''
 }

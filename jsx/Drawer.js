@@ -7,32 +7,46 @@ import {
   DrawerLayoutAndroid, 
   TouchableHighlight, 
   StatusBar, 
-  Platform
+  Platform,
+  Linking,
+  Share,
 } from 'react-native'
 import { Link } from 'react-router-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { ListItem } from 'react-native-material-ui'
 
+import { devEmail, linkToPlayStore } from '../configs/config'
+
 export default class Drawer extends Component {
   render() {
+    const { history, location, children, onDrawerClose } = this.props
+    console.log(onDrawerClose)
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
-        ref={(_drawer) => this.drawer = _drawer}
+        ref={_drawer => this.drawer = _drawer}
         renderNavigationView={() => (
           <NavigationView 
-            closeDrawer={this.close}
-            history={this.props.history}
-            location={this.props.location}
+            closeDrawer={onDrawerClose}
+            history={history}
+            location={location}
           />
           )}
         >
-        {this.props.children}
+        {children}
       </DrawerLayoutAndroid>
     )
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isOpen) {
+      this.open()
+    } else {
+      this.close()
+    }
+  }
+  
   open = () => this.drawer.openDrawer()
   close = () => this.drawer.closeDrawer()
 }
@@ -60,7 +74,9 @@ class NavigationView extends Component {
                 key={i}
                 iconName={item.iconName} 
                 name={item.name}
-                to={item.to}
+                to={item.to ? item.to : null}
+                link={item.link ? item.link : null}
+                share={item.share ? item.share : null}
                 closeDrawer={this.props.closeDrawer} 
                 history={this.props.history}
                 location={this.props.location}
@@ -89,10 +105,26 @@ class NavigationItem extends Component {
       </View>
     )
   }
+
   handlePress = () => {
-    const { history, closeDrawer, to, location } = this.props
+    const { history, closeDrawer, to, location, link, share } = this.props
+
+    if (link) return Linking.openURL(link)
+    if (share) {
+      return Share.share({
+        message: 'Lataa Ilmaisparkki Play-kaupasta, sovellus on täysin ilmainen!' + linkToPlayStore,
+        title: 'Löydä ilmaisia 24h parkkipaikkoja Helsingistä!'
+      }, {
+        dialogTitle: 'Jaa sovellus kavereillesi!',
+      })
+    }
+
 
     if (location.pathname !== to) {
+      //If we are trying to go to mainscreen, do not open a new activity. Instead go one activity back to preserve memory
+      if (to === '/') {
+        history.goBack()
+      }
       history.push(to)  
     }
     
@@ -114,11 +146,11 @@ const menuItems = [
   {
     iconName: 'email',
     name: 'Anna palautetta',
-    to: '/',
+    link: 'mailto:' + devEmail + '?subject=Palaute sovelluksesta:',
   },
   {
     iconName: 'share',
     name: 'Jaa kavereiden kanssa',
-    to: '/',
+    share: true,
   }
 ]
