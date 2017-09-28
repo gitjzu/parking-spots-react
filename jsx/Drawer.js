@@ -20,7 +20,6 @@ import { devEmail, linkToPlayStore } from '../configs/config'
 export default class Drawer extends Component {
   render() {
     const { history, location, children, onDrawerClose } = this.props
-    console.log(onDrawerClose)
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}

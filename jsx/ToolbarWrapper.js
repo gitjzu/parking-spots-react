@@ -12,7 +12,6 @@ export default class ToolbarWrapper extends Component {
       leftIcon,
       action,
     } = this.props
-    console.log(this)
     return(
       <View>
         { Platform.OS === 'android' && Platform.Version >= 20 ?
