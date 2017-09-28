@@ -5,6 +5,14 @@ import { Toolbar } from 'react-native-material-ui'
 
 export default class ToolbarWrapper extends Component {
   render(){
+    
+    const { 
+      search,
+      title,
+      leftIcon,
+      action,
+    } = this.props
+    console.log(this)
     return(
       <View>
         { Platform.OS === 'android' && Platform.Version >= 20 ?
@@ -16,13 +24,14 @@ export default class ToolbarWrapper extends Component {
             />
             : null }
             <Toolbar
-              leftElement="menu"
-              centerElement="Parking Spots"
-              searchable={{
+              leftElement={leftIcon}
+              centerElement={title}
+              onLeftElementPress={action}
+              searchable={ search ? {
                 autoFocus: true,
                 placeholder: 'Search by name',
                 onChangeText: (value) => {console.log(value)},
-              }}
+              } : null}
             />
       </View>
     )
