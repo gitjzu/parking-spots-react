@@ -75,8 +75,8 @@ export default class MainScreen extends Component {
     )
   }
 
-  bannerError = () => {
-    console.error('error loading ad')
+  bannerError = (err) => {
+    console.log('error loading ad: ' + err)
   }
 
   getPosition = () => {

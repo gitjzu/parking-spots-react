@@ -49,7 +49,7 @@ export default class App extends Component {
               <ToolbarWrapper
                 title='Ilmaisparkki'
                 leftIcon='menu'
-                search={true}
+                search={false}
                 action={() => this.openDrawer()}
               />
             )}

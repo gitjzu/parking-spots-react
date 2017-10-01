@@ -110,6 +110,16 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+    signingConfigs {
+        release {
+            if (project.hasProperty('ILMAISPARKKI_RELEASE_STORE_FILE')) {
+                storeFile file(ILMAISPARKKI_RELEASE_STORE_FILE)
+                storePassword ILMAISPARKKI_RELEASE_STORE_PASSWORD
+                keyAlias ILMAISPARKKI_RELEASE_KEY_ALIAS
+                keyPassword ILMAISPARKKI_RELEASE_KEY_PASSWORD
+            }
+        }
+    }
     splits {
         abi {
             reset()
@@ -122,6 +132,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
