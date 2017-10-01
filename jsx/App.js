@@ -6,13 +6,14 @@ import {
   StyleSheet,
   DrawerLayoutAndroid,
   ToastAndroid,
-  NativeModules
+  NativeModules,
 } from 'react-native'
 import { 
   Card,
   Navigation,
 } from 'react-router-navigation'
 import { Link } from 'react-router-native'
+import TaskDescriptionAndroid from 'react-native-android-taskdescription'
 
 import Drawer from './Drawer'
 import MainScreen from './MainScreen'
@@ -68,6 +69,7 @@ export default class App extends Component {
             )}
           />
         </Navigation>
+        <TaskDescriptionAndroid backgroundColor='#304ffe' />
       </Drawer>
     )
   }
