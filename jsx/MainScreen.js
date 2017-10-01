@@ -70,7 +70,6 @@ export default class MainScreen extends Component {
           <AdMobBanner
             bannerSize="banner"
             adUnitID={bannerAdUnitId}
-            testDeviceID="EMULATOR"
             didFailToReceiveAdWithError={this.bannerError} />
         </View>
       </View>

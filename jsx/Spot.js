@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import { 
   View, 
   Text, 
@@ -11,7 +11,7 @@ import getDirections from 'react-native-google-maps-directions'
 
 import { regionFrom } from './util'
 
-export default class Spot extends Component {
+export default class Spot extends PureComponent {
   constructor() {
     super()
 
