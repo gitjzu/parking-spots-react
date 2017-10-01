@@ -111,7 +111,7 @@ class NavigationItem extends Component {
     if (link) return Linking.openURL(link)
     if (share) {
       return Share.share({
-        message: 'Lataa Ilmaisparkki Play-kaupasta, sovellus on täysin ilmainen!' + linkToPlayStore,
+        message: 'Löydä ilmaisia 24h parkkipaikkoja Helsingistä, lataa Ilmaisparkki-sovellus Play-kaupasta! ' + linkToPlayStore,
         title: 'Löydä ilmaisia 24h parkkipaikkoja Helsingistä!'
       }, {
         dialogTitle: 'Jaa sovellus kavereillesi!',
