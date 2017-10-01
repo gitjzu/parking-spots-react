@@ -15,7 +15,7 @@ import { Link } from 'react-router-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { ListItem } from 'react-native-material-ui'
 
-import { devEmail, linkToPlayStore } from '../configs/config'
+import { devEmail, linkToPlayStore, versionNumber } from '../configs/config'
 
 export default class Drawer extends Component {
   render() {
@@ -63,7 +63,7 @@ class NavigationView extends Component {
           <Icon name='local-parking' size={80} color='#FFFFFF' />
           <View style={{marginLeft: 20, marginBottom: 10}}>
             <Text style={{color: '#FFFFFF'}} >Helsingin ilmaiset 24H parkit</Text>
-            <Text style={{color: '#FFFFFF'}} >Versio 0.1</Text>
+            <Text style={{color: '#FFFFFF'}} >Versio {versionNumber}</Text>
           </View>
         </View>
         <View style={{marginBottom: 10}}>

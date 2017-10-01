@@ -16,6 +16,7 @@ import { Link } from 'react-router-native'
 import SnackBar from 'react-native-snackbar-component'
 import FAB from 'react-native-fab'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import Permissions from 'react-native-permissions'
 
 import SpotList from './SpotList'
 import { bannerAdUnitId } from '../configs/config'
@@ -29,14 +30,15 @@ export default class MainScreen extends Component {
       userLatitude: null,
       userLongitude: null,
       error: null,
-      showSnackbar: true,
+      showSnackbar: false,
       snackOffset: 0,
       snackMessage: null,
+      permissionToUseLocation: 'undetermined',
     } 
   }
 
   componentDidMount() {
-    this.getPosition()
+    this.locate()
   }
 
   render() {
@@ -51,7 +53,7 @@ export default class MainScreen extends Component {
           <FAB 
             buttonColor="red" 
             iconTextColor="#FFFFFF" 
-            onClickAction={this.getPosition} 
+            onClickAction={this.locate} 
             visible={true} 
             iconTextComponent={<Icon name="gps-fixed"/>} 
             snackOffset={this.state.snackOffset}
@@ -79,8 +81,28 @@ export default class MainScreen extends Component {
     console.log('error loading ad: ' + err)
   }
 
+  locate = () => {
+    this.checkLocationPermission()
+
+    switch(this.state.permissionToUseLocation) {
+      case 'authorized':
+        this.getPosition()
+        return
+
+
+      case 'undetermined':
+      case 'denied':
+        this.requestLocationPermission()
+        return
+
+      case 'restricted':
+        this.showToast('Lupaa paikannukselle ei saatu')
+        return
+    }
+  }
+
   getPosition = () => {
-    this.setState({showSnackbar: true, snackMessage: 'Trying to get location...'})
+    this.setState({showSnackbar: true, snackMessage: 'Paikannetaan...'})
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -90,7 +112,7 @@ export default class MainScreen extends Component {
           error: null,
           showSnackbar: false
         })
-        this.showToast('Location retrieved succesfully')
+        this.showToast('Paikkatieto haettu onnistuneesti')
       },
       (error) => {
         this.setState({
@@ -102,6 +124,21 @@ export default class MainScreen extends Component {
       { timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
       // There seems to be a bug where setting "enableHighAccuracy: true" will not return a position, instead the request will just timeout -Yacine
     )
+  }
+
+  requestLocationPermission = () => {
+    Permissions.request('location') 
+    .then(response => {
+      if(response === 'authorized') this.getPosition()
+      this.setState({ permissionToUseLocation: response })
+    });
+  }
+
+  checkLocationPermission = () => {
+    Permissions.check('location') 
+      .then(response => {
+        this.setState({ permissionToUseLocation: response })
+      });
   }
 
   showToast = (msg) => {
