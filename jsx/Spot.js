@@ -45,11 +45,18 @@ export default class Spot extends Component {
             liteMode={true}
             toolbarEnabled={false}
           >
+          { coordinates.length === 1 ?
+            <MapView.Marker 
+              coordinate={coordinates[0]}
+              pinColor='#304ffe'
+            />
+            :
             <MapView.Polyline 
               coordinates={coordinates}
               strokeWidth={5}
               strokeColor='#304ffe'
             />
+          }
           </MapView>
         }
         <View style={styles.cardBottom} >
