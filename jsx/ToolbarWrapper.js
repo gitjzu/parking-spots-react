@@ -3,6 +3,8 @@ import { View, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { Toolbar } from 'react-native-material-ui'
 
+import I18n from './i18n/i18n'
+
 export default class ToolbarWrapper extends Component {
   render(){
     
@@ -28,7 +30,7 @@ export default class ToolbarWrapper extends Component {
               onLeftElementPress={action}
               searchable={ search ? {
                 autoFocus: true,
-                placeholder: 'Search by name',
+                placeholder: I18n.t('search'),
                 onChangeText: (value) => {console.log(value)},
               } : null}
             />

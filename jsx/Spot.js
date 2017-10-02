@@ -10,6 +10,7 @@ import CardView from 'react-native-cardview'
 import getDirections from 'react-native-google-maps-directions'
 
 import { regionFrom } from './util'
+import I18n from './i18n/i18n'
 
 export default class Spot extends PureComponent {
   constructor() {
@@ -75,7 +76,7 @@ export default class Spot extends PureComponent {
               </Text>
             }
             </Text>
-            <Button title='Navigoi tänne' onPress={this.navigate} />
+            <Button title={I18n.t('navigateHere')} onPress={this.navigate} />
           </View>
         </View>
       </CardView>

@@ -18,6 +18,7 @@ import FAB from 'react-native-fab'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Permissions from 'react-native-permissions'
 
+import I18n from './i18n/i18n'
 import SpotList from './SpotList'
 import { bannerAdUnitId } from '../configs/config'
 import { allSpotsQuery } from './queries'
@@ -95,13 +96,13 @@ export default class MainScreen extends Component {
         return
 
       case 'restricted':
-        this.showToast('Lupaa paikannukselle ei saatu')
+        this.showToast(I18n.t('locationRestricted'))
         return
     }
   }
 
   getPosition = () => {
-    this.setState({showSnackbar: true, snackMessage: 'Paikannetaan...'})
+    this.setState({showSnackbar: true, snackMessage: I18n.t('locating')})
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -111,7 +112,7 @@ export default class MainScreen extends Component {
           error: null,
           showSnackbar: false
         })
-        this.showToast('Paikkatieto haettu onnistuneesti')
+        this.showToast(I18n.t('locatingSuccessfull'))
       },
       (error) => {
         this.setState({

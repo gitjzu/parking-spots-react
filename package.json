@@ -15,6 +15,7 @@
 		"react-native-cardview": "^1.1.0",
 		"react-native-fab": "^1.0.5",
 		"react-native-google-maps-directions": "^1.1.2",
+		"react-native-i18n": "^2.0.6",
 		"react-native-maps": "^0.16.3",
 		"react-native-material-ui": "^1.13.0",
 		"react-native-optimized-flatlist": "^1.0.1",

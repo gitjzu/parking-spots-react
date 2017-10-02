@@ -15,6 +15,7 @@ import {
 import { Link } from 'react-router-native'
 import TaskDescriptionAndroid from 'react-native-android-taskdescription'
 
+import I18n from './i18n/i18n'
 import Drawer from './Drawer'
 import MainScreen from './MainScreen'
 import Faq from './Faq'
@@ -48,7 +49,7 @@ export default class App extends Component {
             component={MainScreen}
             renderNavBar={() => (
               <ToolbarWrapper
-                title='Ilmaisparkki'
+                title={I18n.t('title')}
                 leftIcon='menu'
                 search={false}
                 action={() => this.openDrawer()}
@@ -61,7 +62,7 @@ export default class App extends Component {
             component={Faq}
             renderNavBar={() => (
               <ToolbarWrapper
-                title='Usein kysytyt kysymykset'
+                title={I18n.t('faqLong')}
                 leftIcon='arrow-back'
                 search={false}
                 action={() => this.props.history.goBack()}

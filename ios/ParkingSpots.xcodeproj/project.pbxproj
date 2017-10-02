@@ -51,6 +51,7 @@
 		B90A675D287141519BACC627 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1124A872388440ACB3D71480 /* SimpleLineIcons.ttf */; };
 		FAC31D259BAE4241B743B0D1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B336F742B8B24941B0DDFD97 /* Zocial.ttf */; };
 		1374F52C80564BE2BC52EB28 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8B48C61D2BD465F950CD933 /* libReactNativePermissions.a */; };
+		8E98E011953C4F07B22841FF /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ED86911B415D46208989C35D /* libRNI18n.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +299,8 @@
 		B336F742B8B24941B0DDFD97 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BF17A94075D541D7AF525CB8 /* ReactNativePermissions.xcodeproj */ = {isa = PBXFileReference; name = "ReactNativePermissions.xcodeproj"; path = "../node_modules/react-native-permissions/ReactNativePermissions.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		E8B48C61D2BD465F950CD933 /* libReactNativePermissions.a */ = {isa = PBXFileReference; name = "libReactNativePermissions.a"; path = "libReactNativePermissions.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		EB4D6A73C08E47FF8BCCE3BC /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		ED86911B415D46208989C35D /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +334,7 @@
 				A4C7E2BD811647B78DC04DEC /* libAirMaps.a in Frameworks */,
 				FBCA426631F649E6905A18CE /* libRNVectorIcons.a in Frameworks */,
 				1374F52C80564BE2BC52EB28 /* libReactNativePermissions.a in Frameworks */,
+				8E98E011953C4F07B22841FF /* libRNI18n.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +508,7 @@
 				6103A0058EC0415B99809306 /* AirMaps.xcodeproj */,
 				B8CE8AE60E7B4678894361B6 /* RNVectorIcons.xcodeproj */,
 				BF17A94075D541D7AF525CB8 /* ReactNativePermissions.xcodeproj */,
+				EB4D6A73C08E47FF8BCCE3BC /* RNI18n.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1085,6 +1090,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1093,6 +1099,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Debug;
@@ -1118,6 +1125,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1126,6 +1134,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Release;
@@ -1152,6 +1161,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Debug;
@@ -1177,6 +1187,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Release;
@@ -1211,6 +1222,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1219,6 +1231,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Debug;
@@ -1253,6 +1266,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1261,6 +1275,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-maps\lib\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-permissions/**",
+					"$(SRCROOT)\..\node_modules\react-native-i18n\ios",
 				);
 			};
 			name = Release;
@@ -1290,6 +1305,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -1314,6 +1330,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

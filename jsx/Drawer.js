@@ -15,6 +15,7 @@ import { Link } from 'react-router-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { ListItem } from 'react-native-material-ui'
 
+import I18n from './i18n/i18n'
 import { devEmail, linkToPlayStore, versionNumber } from '../configs/config'
 
 export default class Drawer extends Component {
@@ -62,8 +63,8 @@ class NavigationView extends Component {
         <View style={{height:185, backgroundColor:'#0092DB', justifyContent: 'flex-end'}}>
           <Icon name='local-parking' size={80} color='#FFFFFF' />
           <View style={{marginLeft: 20, marginBottom: 10}}>
-            <Text style={{color: '#FFFFFF'}} >Helsingin ilmaiset 24H parkit</Text>
-            <Text style={{color: '#FFFFFF'}} >Versio {versionNumber}</Text>
+            <Text style={{color: '#FFFFFF'}} >{I18n.t('drawerInfo')}</Text>
+            <Text style={{color: '#FFFFFF'}} >{I18n.t('version')}: {versionNumber}</Text>
           </View>
         </View>
         <View style={{marginBottom: 10}}>
@@ -111,10 +112,10 @@ class NavigationItem extends Component {
     if (link) return Linking.openURL(link)
     if (share) {
       return Share.share({
-        message: 'Löydä ilmaisia 24h parkkipaikkoja Helsingistä, lataa Ilmaisparkki-sovellus Play-kaupasta! ' + linkToPlayStore,
-        title: 'Löydä ilmaisia 24h parkkipaikkoja Helsingistä!'
+        message: I18n.t('shareMessage') + linkToPlayStore,
+        title: I18n.t('shareTitle')
       }, {
-        dialogTitle: 'Jaa sovellus kavereillesi!',
+        dialogTitle: I18n.t('shareDialogTitle'),
       })
     }
 
@@ -134,22 +135,22 @@ class NavigationItem extends Component {
 const menuItems = [
   {
     iconName: 'format-list-bulleted',
-    name: 'Paikat',
+    name: I18n.t('places'),
     to: '/',
   },
   {
     iconName: 'info',
-    name: 'UKK',
+    name: I18n.t('faqShort'),
     to: '/ukk',
   },
   {
     iconName: 'email',
-    name: 'Anna palautetta',
-    link: 'mailto:' + devEmail + '?subject=Palaute sovelluksesta:',
+    name: I18n.t('giveFeedback'),
+    link: 'mailto:' + devEmail + '?subject=' + I18n.t('feedbackSubject'),
   },
   {
     iconName: 'share',
-    name: 'Jaa kavereiden kanssa',
+    name: I18n.t('share'),
     share: true,
   }
 ]
