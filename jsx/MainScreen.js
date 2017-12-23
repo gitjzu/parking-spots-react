@@ -23,6 +23,7 @@ import SpotList from './SpotList'
 import { bannerAdUnitId } from '../configs/config'
 import { allSpotsQuery } from './queries'
 
+const QUERY_LIMIT = 10
 export default class MainScreen extends Component {
   constructor() {
     super()
@@ -35,6 +36,7 @@ export default class MainScreen extends Component {
       snackOffset: 0,
       snackMessage: null,
       permissionToUseLocation: 'undetermined',
+      queryOffset: 0,
     } 
   }
 
@@ -131,14 +133,14 @@ export default class MainScreen extends Component {
     .then(response => {
       if(response === 'authorized') this.getPosition()
       this.setState({ permissionToUseLocation: response })
-    });
+    })
   }
 
   checkLocationPermission = () => {
     Permissions.check('location') 
       .then(response => {
         this.setState({ permissionToUseLocation: response })
-      });
+      })
   }
 
   showToast = (msg) => {
@@ -147,11 +149,36 @@ export default class MainScreen extends Component {
 }
 
 const SpotListWithData = graphql(allSpotsQuery, {
-  options: ({userLat, userLon}) => ({
+  options: ({userLat, userLon, queryOffset}) => ({
     variables: {
       userLat,
       userLon,
+      offset: queryOffset,
+      limit: QUERY_LIMIT,
     },
+    fetchPolicy: 'network-only',
+    notifyOnNetworkStatusChange: true,
   }),
-  notifyOnNetworkStatusChange: true,
+  props({ data: { Spots, fetchMore, loading, networkStatus, refetch } }) {
+    return {
+      Spots,
+      loading,
+      networkStatus,
+      refetch,
+      loadMoreEntries: () => {
+        return fetchMore({
+          variables: {
+            offset: Spots.length,
+          },
+          updateQuery: (previousResult, { fetchMoreResult }) => {
+            if (!fetchMoreResult) { return previousResult }
+            return Object.assign({}, previousResult, {
+              // Append the new feed results to the old one
+              Spots: [...previousResult.Spots, ...fetchMoreResult.Spots],
+            })
+          }
+        })
+      },
+    }
+  },
 }) (SpotList)

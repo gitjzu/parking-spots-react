@@ -21,7 +21,7 @@ import App from './jsx/App'
 const { UIManager } = NativeModules
 
 UIManager.setLayoutAnimationEnabledExperimental &&
-  UIManager.setLayoutAnimationEnabledExperimental(true);
+  UIManager.setLayoutAnimationEnabledExperimental(true)
 
 
 export default class ParkingSpots extends Component {
