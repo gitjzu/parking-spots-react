@@ -11,11 +11,11 @@ import Spot from './Spot'
 
 export default class SpotList extends Component {
   render() {
-    console.log(this.props.Spots)
     return (
       <View style={styles.container}>
-          { //NetworkStatus 1 = Initial data loading
-            this.props.networkStatus === 1 ? 
+          { // Display ActivityIndicator if data is loading and network status is NOT 3 (=fetchMore in flight)
+            // If network status is 3 we display the ActivityIndicator on the FlatList footer instead of here
+            this.props.loading && this.props.networkStatus !== 3 ? 
           <ActivityIndicator size='large'/>
           :
           <FlatList 
@@ -42,6 +42,7 @@ export default class SpotList extends Component {
       coordinates={item.coordinates}
       lat={item.lat}
       lon={item.lon}
+      type={item.type}
       distance={item.distance}
     />
   )
@@ -49,7 +50,7 @@ export default class SpotList extends Component {
     return (
       <View style={styles.loadingContainer}>
         { //networkstatus 3 = fetchMore is in flight
-          this.props.networkStatus === 3 &&
+          this.props.loading && this.props.networkStatus === 3 &&
           <ActivityIndicator size='large' />          
         }
       </View>

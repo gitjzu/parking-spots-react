@@ -15,6 +15,7 @@ export default {
   answer: 'Vastaus',
   locationRestricted: 'Lupaa paikannukselle ei saatu',
   locating: 'Paikannetaan...',
+  locate: 'Paikanna',
   locatingSuccessfull: 'Paikkatieto haettu onnistuneesti',
   navigateHere: 'Navigoi tänne',
   search: 'Etsi nimellä',
@@ -23,5 +24,8 @@ export default {
   q2: 'Mistä Ilmaisparkki-sovellus saa tiedot parkkipaikoista?',
   a2: 'Tiedot parkkipaikoista tulevat täältä',
   q3: 'Milloin parkkipaikkojen tiedot ovat viimeksi päivitetty?',
-  a3: 'Tiedot ovat päivitetty 21.07.2017'
+  a3: 'Tiedot ovat päivitetty 21.07.2017',
+  showAll: 'Näytä kaikki paikat',
+  showLongTerm: 'Näytä 24H paikat',
+  showShortTerm: 'Näytä 2-4H paikat',
 }

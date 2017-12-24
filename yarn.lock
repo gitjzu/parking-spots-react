@@ -3456,6 +3456,12 @@ react-devtools-core@^2.5.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-action-button@^2.8.3:
+  version "2.8.3"
+  resolved "https://registry.yarnpkg.com/react-native-action-button/-/react-native-action-button-2.8.3.tgz#f8a2b01fcb9ea328106c355169c9fcb0bb41f2b0"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-admob@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/react-native-admob/-/react-native-admob-1.3.2.tgz#bcf9841158b1686361b9328ce7c5b5b0a7791c8a"
@@ -3486,10 +3492,6 @@ react-native-drawer-layout@1.3.2:
   dependencies:
     react-native-dismiss-keyboard "1.0.0"
 
-react-native-fab@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/react-native-fab/-/react-native-fab-1.0.5.tgz#1b503727becb63148b251020bbbcfc39234442ac"
-
 react-native-google-maps-directions@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/react-native-google-maps-directions/-/react-native-google-maps-directions-1.1.2.tgz#a362a9c3c266d9c7e853696e2ffe99193f67d64d"
@@ -3516,10 +3518,6 @@ react-native-material-ui@^1.13.0:
     lodash.merge "^4.0.0"
     prop-types "^15.5.10"
     react-native-material-design-styles "^0.2.6"
-
-react-native-optimized-flatlist@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-optimized-flatlist/-/react-native-optimized-flatlist-1.0.1.tgz#dbee82f208b48bef23c6cb26f1d5f3ac58e675b2"
 
 react-native-permissions@^1.0.1:
   version "1.0.1"

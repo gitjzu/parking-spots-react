@@ -14,7 +14,6 @@ import {
 } from 'react-native-admob'
 import { Link } from 'react-router-native'
 import SnackBar from 'react-native-snackbar-component'
-import FAB from 'react-native-fab'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Permissions from 'react-native-permissions'
 
@@ -22,6 +21,7 @@ import I18n from './i18n/i18n'
 import SpotList from './SpotList'
 import { bannerAdUnitId } from '../configs/config'
 import { allSpotsQuery } from './queries'
+import FAB from './FAB'
 
 const QUERY_LIMIT = 10
 export default class MainScreen extends Component {
@@ -37,29 +37,30 @@ export default class MainScreen extends Component {
       snackMessage: null,
       permissionToUseLocation: 'undetermined',
       queryOffset: 0,
+      filter: null,
     } 
   }
 
   componentDidMount() {
-    this.locate()
+    this.handleLocate()
   }
 
   render() {
+    console.log()
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
           <SpotListWithData
             userLat={this.state.userLatitude}
             userLon={this.state.userLongitude}
+            queryOffset={this.state.queryOffset}
+            type={this.state.filter}
           />
 
           <FAB 
-            buttonColor="red" 
-            iconTextColor="#FFFFFF" 
-            onClickAction={this.locate} 
-            visible={true} 
-            iconTextComponent={<Icon name="gps-fixed"/>} 
-            snackOffset={this.state.snackOffset}
+            offset={this.state.snackOffset} 
+            onFilter={this.handleFilter}
+            onLocate={this.handleLocate}
           />
 
           <SnackBar 
@@ -83,7 +84,7 @@ export default class MainScreen extends Component {
     console.log('error loading ad: ' + err)
   }
 
-  locate = () => {
+  handleLocate = () => {
     this.checkLocationPermission()
 
     switch(this.state.permissionToUseLocation) {
@@ -146,13 +147,20 @@ export default class MainScreen extends Component {
   showToast = (msg) => {
     ToastAndroid.show(msg, ToastAndroid.SHORT)
   }
+
+  handleFilter = (type) => {
+    this.setState({
+      filter: type,
+    })
+  }
 }
 
 const SpotListWithData = graphql(allSpotsQuery, {
-  options: ({userLat, userLon, queryOffset}) => ({
+  options: ({userLat, userLon, queryOffset, type}) => ({
     variables: {
       userLat,
       userLon,
+      type,
       offset: queryOffset,
       limit: QUERY_LIMIT,
     },

@@ -15,6 +15,7 @@ export default {
   answer: 'Answer',
   locationRestricted: 'Permission to use location was denied',
   locating: 'Locating...',
+  locate: 'Locate',
   locatingSuccessfull: 'Location request was succesfull',
   navigateHere: 'Navigate here',
   search: 'Search by name',
@@ -24,4 +25,7 @@ export default {
   a2: 'The data comes from here',
   q3: 'When was the data last updated',
   a3: 'The data was last updated 21.07.2017',
+  showAll: 'Show all spots',
+  showLongTerm: 'Show 24H spots',
+  showShortTerm: 'Show 2-4H spots',
 }

@@ -33,7 +33,8 @@ export default class Spot extends PureComponent {
       lat,
       lon,
       coordinates,
-      address
+      address,
+      type,
     } = this.props
 
 
@@ -62,19 +63,19 @@ export default class Spot extends PureComponent {
         }
         <View style={styles.cardBottom} >
           <Text style={styles.address}>
-            {address}
+            {address} ({type})
           </Text>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginRight: 10}}>
-            {distance ?
-              <Text>
-                {distance} km
-              </Text>
-              :
-              <Text>
-                -- km
-              </Text>
-            }
+          <View style={styles.distanceContainer}>
+            <Text style={{marginRight: 10}}>
+              {distance ?
+                <Text>
+                  {distance} km
+                </Text>
+                :
+                <Text>
+                  -- km
+                </Text>
+              }
             </Text>
             <Button title={I18n.t('navigateHere')} onPress={this.navigate} />
           </View>
@@ -102,9 +103,9 @@ const styles = StyleSheet.create({
   cardBottom: {
     flexDirection: 'row', 
     flex: 1, 
+    flexWrap: 'wrap',
     marginBottom: 8, 
     marginRight: 8, 
-    justifyContent: 'space-between', 
     alignItems: 'center',
   },
   map: {
@@ -113,5 +114,13 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 20,
     margin: 10,
+    justifyContent: 'flex-start',
+    flex: 1,
   },
+  distanceContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    flex: 1,
+  }
 })
