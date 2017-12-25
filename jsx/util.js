@@ -1,4 +1,4 @@
-export function regionFrom(lat, lon, distance = 300 ) {
+export function regionFrom(lat, lon, distance = 400 ) {
   distance = distance/2
   const circumference = 40075
   const oneDegreeOfLatitudeInMeters = 111.32 * 1000

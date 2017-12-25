@@ -44,7 +44,8 @@ export default class Spot extends PureComponent {
           <MapView 
             style={styles.map}
             region={this.state.region}
-            liteMode={true}
+            liteMode
+            showsUserLocation
             toolbarEnabled={false}
           >
           { coordinates.length === 1 ?
