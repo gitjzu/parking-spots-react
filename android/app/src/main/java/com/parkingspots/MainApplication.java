@@ -7,7 +7,7 @@ import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.jwarby.reactnativeandroidtaskdescription.TaskDescriptionPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
-import com.reactlibrary.RNCardViewPackage;
+import com.kishanjvaghela.cardview.RNCardViewPackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -36,6 +36,11 @@ public class MainApplication extends Application implements ReactApplication {
             new RNCardViewPackage(),
             new RNAdMobPackage()
       );
+    }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
     }
   };
 

@@ -46,7 +46,6 @@ export default class MainScreen extends Component {
   }
 
   render() {
-    console.log()
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
@@ -72,7 +71,7 @@ export default class MainScreen extends Component {
 
         <View style={{alignItems: 'center'}}>
           <AdMobBanner
-            bannerSize="banner"
+            adSize='banner'
             adUnitID={bannerAdUnitId}
             didFailToReceiveAdWithError={this.bannerError} />
         </View>
