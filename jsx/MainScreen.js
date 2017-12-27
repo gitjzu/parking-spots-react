@@ -12,7 +12,7 @@ import { graphql } from 'react-apollo'
 import { 
   AdMobBanner,
 } from 'react-native-admob'
-import { Link } from 'react-router-native'
+import { Card, Navigation } from 'react-router-navigation'
 import SnackBar from 'react-native-snackbar-component'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Permissions from 'react-native-permissions'
@@ -22,6 +22,7 @@ import SpotList from './SpotList'
 import { bannerAdUnitId } from '../configs/config'
 import { allSpotsQuery } from './queries'
 import FAB from './FAB'
+import SpotMap from './SpotMap'
 
 const QUERY_LIMIT = 10
 export default class MainScreen extends Component {
@@ -49,12 +50,29 @@ export default class MainScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
-          <SpotListWithData
-            userLat={this.state.userLatitude}
-            userLon={this.state.userLongitude}
-            queryOffset={this.state.queryOffset}
-            type={this.state.filter}
-          />
+          <Navigation>
+            <Card 
+              style={{flex: 1}}
+              exact
+              path='/'
+              component={() => (
+                <SpotListWithData
+                  userLat={this.state.userLatitude}
+                  userLon={this.state.userLongitude}
+                  queryOffset={this.state.queryOffset}
+                  type={this.state.filter}
+                />
+              )}
+              hideNavBar 
+            />
+
+            <Card 
+              style={{flex: 1}}
+              path='/spotmap'
+              component={SpotMap}
+              hideNavBar 
+            />
+          </Navigation>
 
           <FAB 
             offset={this.state.snackOffset} 

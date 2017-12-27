@@ -7,6 +7,7 @@ import {
 } from 'react-native'
 import MapView from 'react-native-maps'
 import CardView from 'react-native-cardview'
+import { Link } from 'react-router-native'
 import getDirections from 'react-native-google-maps-directions'
 
 import { regionFrom } from './util'
@@ -41,26 +42,35 @@ export default class Spot extends PureComponent {
     return (
       <CardView style={styles.container}>
         {this.state.region && 
-          <MapView 
-            style={styles.map}
-            region={this.state.region}
-            liteMode
-            showsUserLocation
-            toolbarEnabled={false}
-          >
-          { coordinates.length === 1 ?
-            <MapView.Marker 
-              coordinate={coordinates[0]}
-              pinColor='#304ffe'
-            />
-            :
-            <MapView.Polyline 
-              coordinates={coordinates}
-              strokeWidth={5}
-              strokeColor='#304ffe'
-            />
-          }
-          </MapView>
+          <Link to={{
+            pathname: '/spotmap',
+            state: {
+              region: this.state.region
+            }
+          }}>
+            <View>
+              <MapView 
+                style={styles.map}
+                region={this.state.region}
+                liteMode
+                showsUserLocation
+                toolbarEnabled={false}
+              >
+              { coordinates.length === 1 ?
+                <MapView.Marker 
+                  coordinate={coordinates[0]}
+                  pinColor='#304ffe'
+                />
+                :
+                <MapView.Polyline 
+                  coordinates={coordinates}
+                  strokeWidth={5}
+                  strokeColor='#304ffe'
+                />
+              }
+              </MapView>
+            </View>
+          </Link>
         }
         <View style={styles.cardBottom} >
           <Text style={styles.address}>
