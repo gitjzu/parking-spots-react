@@ -6,15 +6,14 @@ import FloatingActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import I18n from './i18n/i18n'
-
 export default class FAB extends Component {
 
   render() {
     return (
       <FloatingActionButton 
-        buttonColor="red"
+        buttonColor='red'
         offsetY={30 + this.props.offset}
-        icon={<Icon name='add' style={styles.FABIcon}/>}
+        icon={<Icon name='settings' style={styles.FABIcon}/>}
         >
         <FloatingActionButton.Item
           onPress={this.props.onLocate}

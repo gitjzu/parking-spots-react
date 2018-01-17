@@ -20,6 +20,7 @@ import Drawer from './Drawer'
 import MainScreen from './MainScreen'
 import Faq from './Faq'
 import ToolbarWrapper from './ToolbarWrapper'
+import SpotMap from './SpotMap'
 
 export default class App extends Component {
 
@@ -36,8 +37,8 @@ export default class App extends Component {
     return (
       <Drawer 
         isOpen={this.state.drawerOpen} 
-        onDrawerOpen={this.openDrawer}
-        onDrawerClose={this.closeDrawer}
+        setDrawerOpen={this.openDrawer}
+        setDrawerClose={this.closeDrawer}
         history={this.props.history}
         location={this.props.location} 
       >
@@ -46,20 +47,35 @@ export default class App extends Component {
             style={styles.container}
             exact
             path='/'
-            component={MainScreen}
+            component={ MainScreen }
             renderNavBar={() => (
               <ToolbarWrapper
                 title={I18n.t('title')}
                 leftIcon='menu'
                 search={false}
-                action={() => this.openDrawer()}
+                action={this.openDrawer}
               />
             )}
           />
+
+          <Card 
+            style={styles.container}
+            path='/spotmap'
+            component={ SpotMap }
+            renderNavBar={({history}) => (
+              <ToolbarWrapper
+                title={history.location.state ? history.location.state.name : ''}
+                leftIcon='arrow-back'
+                search={false}
+                action={() => this.props.history.goBack()}
+              />
+            )}
+          />
+
           <Card
             style={styles.container}
             path='/ukk'
-            component={Faq}
+            component={ Faq }
             renderNavBar={() => (
               <ToolbarWrapper
                 title={I18n.t('faqLong')}

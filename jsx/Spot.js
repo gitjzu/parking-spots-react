@@ -45,7 +45,9 @@ export default class Spot extends PureComponent {
           <Link to={{
             pathname: '/spotmap',
             state: {
-              region: this.state.region
+              region: this.state.region,
+              coordinates: coordinates,
+              name: address + ' ' +(type),
             }
           }}>
             <View>

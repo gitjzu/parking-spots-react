@@ -10,7 +10,8 @@ export default class SpotMap extends Component {
     super() 
 
     this.state = {
-      region: null
+      region: null,
+      coordinates: null,
     }
   }
 
@@ -20,9 +21,22 @@ export default class SpotMap extends Component {
         <MapView 
           style={styles.container}
           showsUserLocation
-          region={this.state.region}
+          initialRegion={this.state.region}
           toolbarEnabled={false}
-        />
+        >
+          { this.state.coordinates && this.state.coordinates.length === 1 ?
+            <MapView.Marker
+              coordinate={this.state.coordinates[0]}
+              pinColor='#304ffe'
+            />
+            :
+            <MapView.Polyline 
+              coordinates={this.state.coordinates}
+              strokeWidth={5}
+              strokeColor='#304ffe'
+            />
+          }
+        </MapView>
       </View>
     )
   }
@@ -30,6 +44,7 @@ export default class SpotMap extends Component {
   componentDidMount() {
     this.setState({
       region: this.props.location.state.region,
+      coordinates: this.props.location.state.coordinates,
     })
   }
 }

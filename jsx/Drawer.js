@@ -20,15 +20,16 @@ import { devEmail, linkToPlayStore, versionNumber } from '../configs/config'
 
 export default class Drawer extends Component {
   render() {
-    const { history, location, children, onDrawerClose } = this.props
+    const { history, location, children, setDrawerClose } = this.props
     return (
       <DrawerLayoutAndroid
         drawerWidth={300}
         drawerPosition={DrawerLayoutAndroid.positions.Left}
         ref={_drawer => this.drawer = _drawer}
+        onDrawerClose={setDrawerClose}
         renderNavigationView={() => (
           <NavigationView 
-            closeDrawer={onDrawerClose}
+            closeDrawer={setDrawerClose}
             history={history}
             location={location}
           />

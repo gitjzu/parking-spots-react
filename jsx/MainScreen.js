@@ -50,29 +50,12 @@ export default class MainScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <View style={{flex: 1}}>
-          <Navigation>
-            <Card 
-              style={{flex: 1}}
-              exact
-              path='/'
-              component={() => (
-                <SpotListWithData
-                  userLat={this.state.userLatitude}
-                  userLon={this.state.userLongitude}
-                  queryOffset={this.state.queryOffset}
-                  type={this.state.filter}
-                />
-              )}
-              hideNavBar 
-            />
-
-            <Card 
-              style={{flex: 1}}
-              path='/spotmap'
-              component={SpotMap}
-              hideNavBar 
-            />
-          </Navigation>
+          <SpotListWithData
+            userLat={this.state.userLatitude}
+            userLon={this.state.userLongitude}
+            queryOffset={this.state.queryOffset}
+            filter={this.state.filter}
+          />
 
           <FAB 
             offset={this.state.snackOffset} 
@@ -165,19 +148,19 @@ export default class MainScreen extends Component {
     ToastAndroid.show(msg, ToastAndroid.SHORT)
   }
 
-  handleFilter = (type) => {
+  handleFilter = (filter) => {
     this.setState({
-      filter: type,
+      filter: filter,
     })
   }
 }
 
 const SpotListWithData = graphql(allSpotsQuery, {
-  options: ({userLat, userLon, queryOffset, type}) => ({
+  options: ({userLat, userLon, queryOffset, filter}) => ({
     variables: {
       userLat,
       userLon,
-      type,
+      type: filter,
       offset: queryOffset,
       limit: QUERY_LIMIT,
     },
