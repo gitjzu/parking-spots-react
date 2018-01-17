@@ -8,9 +8,9 @@
 	},
 	"dependencies": {
 		"prop-types": "^15.6.0",
-		"react": "16.0.0",
+		"react": "16.2.0",
 		"react-apollo": "^1.4.12",
-		"react-native": "0.51.0",
+		"react-native": "0.52.0",
 		"react-native-action-button": "^2.8.3",
 		"react-native-admob": "^v2.0.0-beta.3",
 		"react-native-android-taskdescription": "^1.0.3",
