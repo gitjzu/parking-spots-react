@@ -12,7 +12,7 @@ Simple React Native based Android application to search for the nearest free lon
 [scr2]: https://lh3.googleusercontent.com/mvxREpuWDoxlBKDRN9uBrWsoB9rYjb_iggIs7_NQP4sOA8skNucQ377Ve8b1DLa_82F_=h310-rw "drawer"
 
 ## Features
-- Show all parking spots in downtown Helsinki area
+- Show all 24H, 4H and 2H parking spots in downtown Helsinki area
 - Show the spots nearest to user first
 - I18n support for English and Finnish
 - Navigate to the chosen spot
@@ -20,7 +20,5 @@ Simple React Native based Android application to search for the nearest free lon
 - Ads served via Google AdMob
 
 ## Planned features
-- Show free short-term (4h and 2h) parking spots
 - Show paid parking spots
-- Add user location in previews
 - Add search functionality
