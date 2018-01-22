@@ -34,10 +34,9 @@ export class ParkingSpots extends Component {
       }),
     })
   }
-
-  static navigationOptions = {
-    title: 'Main',
-  }
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    headerRight: <Icon name='more-vert' size={25} style={{marginRight: 15}} />,
+  })
 
   render() {
     return (
@@ -56,8 +55,8 @@ export const TabNavigation = TabNavigator({
     navigationOptions: {
       title: 'Ilmaisparkki',
       tabBarVisible: true,
-      tabBarIcon: () => (
-        <Icon name='settings' size={25} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name='menu' size={25} style={{color: tintColor}}/>
       ),
     } 
   },
@@ -66,11 +65,11 @@ export const TabNavigation = TabNavigator({
     navigationOptions: {
       title: 'Kartta',
       tabBarVisible: true,
-      tabBarIcon: () => (
+      tabBarIcon: ({tintColor}) => (
         <View style={styles.middleTab}>
           <View style={styles.middleTabHalfCircleBorder} />
           <View style={styles.middleTabIcon}>
-            <Icon name='settings' size={50}/>
+            <Icon name='local-parking' size={50} style={{color: tintColor}} />
           </View>
         </View>
       )
@@ -81,8 +80,8 @@ export const TabNavigation = TabNavigator({
     navigationOptions: {
       title: 'FAQ',
       tabBarVisible: true,
-      tabBarIcon: () => (
-        <Icon name='settings' size={25} />
+      tabBarIcon: ({tintColor}) => (
+        <Icon name='search' size={25} style={{color: tintColor}}/>
       ),
     }
   },
@@ -90,6 +89,7 @@ export const TabNavigation = TabNavigator({
   tabBarOptions: {
     showIcon: true,
     showLabel: false,
+    activeTintColor: '#304ffe',
     style: {
       height: 80,
       width: '100%',
