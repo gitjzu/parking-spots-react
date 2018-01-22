@@ -67,22 +67,11 @@ export const TabNavigation = TabNavigator({
       title: 'Kartta',
       tabBarVisible: true,
       tabBarIcon: () => (
-        <View style={{
-          height: 80,
-          width: 80,
-          borderTopLeftRadius: 100,
-          borderTopRightRadius: 100,
-          bottom: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#F7F7F7',
-          borderRightWidth: StyleSheet.hairlineWidth,
-          borderLeftWidth: StyleSheet.hairlineWidth,
-          borderTopWidth: StyleSheet.hairlineWidth,
-          borderColor: 'rgba(48,79,254, .3)',
-          }}
-        >
-          <Icon name='settings' size={50} />
+        <View style={styles.middleTab}>
+          <View style={styles.middleTabHalfCircleBorder} />
+          <View style={styles.middleTabIcon}>
+            <Icon name='settings' size={50}/>
+          </View>
         </View>
       )
     }
@@ -116,6 +105,36 @@ export const TabNavigation = TabNavigator({
 
 export const RootStack = StackNavigator({
   Home: { screen: TabNavigation }
+})
+
+const styles = StyleSheet.create({
+  middleTab: {
+    height: 80,
+    width: 80,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
+    bottom: 0,
+    backgroundColor: '#F7F7F7',
+    position: 'relative'
+  },
+  middleTabHalfCircleBorder: {
+    width: 80,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
+    height: 40,
+    borderRightWidth: 2,
+    borderLeftWidth: 2,
+    borderTopWidth: 2,
+    borderBottomWidth: 0,
+    borderColor: 'rgba(48,79,254, .3)',
+    position: 'absolute'
+  },
+  middleTabIcon: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 80,
+    width: 80,
+  }
 })
 
 const uiTheme = {
