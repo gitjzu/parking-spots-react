@@ -177,6 +177,9 @@ class TabBarBottom extends React.PureComponent {
                 height: 80,
                 width: 80,
                 alignSelf: 'flex-end',
+                backgroundColor: '#F7F7F7',
+                borderTopLeftRadius: 100,
+                borderTopRightRadius: 100,
               }
             } else {
               customTabStyle = {
