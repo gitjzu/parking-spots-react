@@ -42,14 +42,7 @@ export default class Spot extends PureComponent {
     return (
       <CardView style={styles.container}>
         {this.state.region && 
-          <Link to={{
-            pathname: '/spotmap',
-            state: {
-              region: this.state.region,
-              coordinates: coordinates,
-              name: address + ' ' +(type),
-            }
-          }}>
+          
             <View>
               <MapView 
                 style={styles.map}
@@ -72,7 +65,6 @@ export default class Spot extends PureComponent {
               }
               </MapView>
             </View>
-          </Link>
         }
         <View style={styles.cardBottom} >
           <Text style={styles.address}>

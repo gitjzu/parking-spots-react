@@ -49,39 +49,31 @@ export default class MainScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <View style={{flex: 1}}>
-          <SpotListWithData
-            userLat={this.state.userLatitude}
-            userLon={this.state.userLongitude}
-            queryOffset={this.state.queryOffset}
-            filter={this.state.filter}
-          />
+        <SpotListWithData
+          userLat={this.state.userLatitude}
+          userLon={this.state.userLongitude}
+          queryOffset={this.state.queryOffset}
+          filter={this.state.filter}
+        />
 
-          <FAB 
-            offset={this.state.snackOffset} 
-            onFilter={this.handleFilter}
-            onLocate={this.handleLocate}
-          />
+        { 
+        /**
+        <FAB 
+          offset={this.state.snackOffset} 
+          onFilter={this.handleFilter}
+          onLocate={this.handleLocate}
+        />
 
-          <SnackBar 
-            visible={this.state.showSnackbar} 
-            textMessage={this.state.snackMessage}
-            distanceCallback={(distance)=>{this.setState({snackOffset: distance})}}
-          />
-        </View>
-
-        <View style={{alignItems: 'center'}}>
-          <AdMobBanner
-            adSize='banner'
-            adUnitID={bannerAdUnitId}
-            didFailToReceiveAdWithError={this.bannerError} />
-        </View>
+        <SnackBar 
+          visible={this.state.showSnackbar} 
+          textMessage={this.state.snackMessage}
+          distanceCallback={(distance)=>{this.setState({snackOffset: distance})}}
+        /> 
+        **/
+        }
+        
       </View>
     )
-  }
-
-  bannerError = (err) => {
-    console.log('error loading ad: ' + err)
   }
 
   handleLocate = () => {

@@ -23,93 +23,9 @@ import ToolbarWrapper from './ToolbarWrapper'
 import SpotMap from './SpotMap'
 
 export default class App extends Component {
-
-  constructor() {
-    super()
-
-    this.state = {
-      drawerOpen: false,
-    }
-  }
-
-
   render() {
     return (
-      <Drawer 
-        isOpen={this.state.drawerOpen} 
-        setDrawerOpen={this.openDrawer}
-        setDrawerClose={this.closeDrawer}
-        history={this.props.history}
-        location={this.props.location} 
-      >
-        <Navigation>
-          <Card
-            style={styles.container}
-            exact
-            path='/'
-            component={ MainScreen }
-            renderNavBar={() => (
-              <ToolbarWrapper
-                title={I18n.t('title')}
-                leftIcon='menu'
-                search={false}
-                action={this.openDrawer}
-              />
-            )}
-          />
-
-          <Card 
-            style={styles.container}
-            path='/spotmap'
-            component={ SpotMap }
-            renderNavBar={({history}) => (
-              <ToolbarWrapper
-                title={history.location.state ? history.location.state.name : ''}
-                leftIcon='arrow-back'
-                search={false}
-                action={() => this.props.history.goBack()}
-              />
-            )}
-          />
-
-          <Card
-            style={styles.container}
-            path='/ukk'
-            component={ Faq }
-            renderNavBar={() => (
-              <ToolbarWrapper
-                title={I18n.t('faqLong')}
-                leftIcon='arrow-back'
-                search={false}
-                action={() => this.props.history.goBack()}
-              />
-            )}
-          />
-        </Navigation>
-        <TaskDescriptionAndroid backgroundColor='#304ffe' />
-      </Drawer>
+      <MainScreen />
     )
   }
-
-  openDrawer = () => {
-    this.setState({drawerOpen: true})
-  }
-  closeDrawer = () => {
-    this.setState({drawerOpen: false})
-  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-})
-
-const navBarStyles = StyleSheet.create({
-  navBar: {
-    backgroundColor: '#304ffe',
-  },
-  title: {
-    color: 'white'
-  }
-})
