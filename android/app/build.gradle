@@ -159,21 +159,21 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-i18n')
-    compile project(':react-native-android-taskdescription')
-    compile project(':react-native-admob')
-    compile project(':react-native-vector-icons')
-    compile(project(':react-native-maps')) {
+    implementation project(':react-native-i18n')
+    implementation project(':react-native-android-taskdescription')
+    implementation project(':react-native-admob')
+    implementation project(':react-native-vector-icons')
+    implementation (project(':react-native-maps')) {
         exclude group: 'com.google.android.gms', module: 'play-services-base'
         exclude group: 'com.google.android.gms', module: 'play-services-maps'
     }
-    compile 'com.google.android.gms:play-services-base:11.+'
-    compile 'com.google.android.gms:play-services-maps:11.+'
-    compile 'com.google.android.gms:play-services-location:+'
-    compile project(':react-native-cardview')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
-    compile "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.google.android.gms:play-services-base:11.+'
+    implementation 'com.google.android.gms:play-services-maps:11.+'
+    implementation 'com.google.android.gms:play-services-location:+'
+    implementation project(':react-native-cardview')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:23.0.1"
+    implementation "com.facebook.react:react-native:+"  // From node_modules
 }
 
 // Run this once to be able to run the application with BUCK

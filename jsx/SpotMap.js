@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { 
+import {
   View,
   StyleSheet,
 } from 'react-native'
@@ -7,30 +7,26 @@ import MapView from 'react-native-maps'
 
 export default class SpotMap extends Component {
   constructor() {
-    super() 
+    super()
 
     this.state = {
       region: null,
       coordinates: null,
     }
-  } 
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <MapView 
+        <MapView
           style={styles.container}
           showsUserLocation
           toolbarEnabled={false}
         >
-          
+
         </MapView>
       </View>
     )
-  }
-
-  componentDidMount() {
-
   }
 }
 

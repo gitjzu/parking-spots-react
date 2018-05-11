@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { 
-  View, 
+import {
+  View,
   Text,
   Button,
   StyleSheet,
@@ -9,9 +9,6 @@ import {
   NativeModules,
 } from 'react-native'
 import { graphql } from 'react-apollo'
-import { 
-  AdMobBanner,
-} from 'react-native-admob'
 import { Card, Navigation } from 'react-router-navigation'
 import SnackBar from 'react-native-snackbar-component'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -39,7 +36,7 @@ export default class MainScreen extends Component {
       permissionToUseLocation: 'undetermined',
       queryOffset: 0,
       filter: null,
-    } 
+    }
   }
 
   componentDidMount() {
@@ -48,7 +45,7 @@ export default class MainScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <SpotListWithData
           userLat={this.state.userLatitude}
           userLon={this.state.userLongitude}
@@ -56,22 +53,22 @@ export default class MainScreen extends Component {
           filter={this.state.filter}
         />
 
-        { 
-        /**
-        <FAB 
-          offset={this.state.snackOffset} 
-          onFilter={this.handleFilter}
-          onLocate={this.handleLocate}
-        />
-
-        <SnackBar 
-          visible={this.state.showSnackbar} 
-          textMessage={this.state.snackMessage}
-          distanceCallback={(distance)=>{this.setState({snackOffset: distance})}}
-        /> 
-        **/
+        {
+          /**
+          <FAB 
+            offset={this.state.snackOffset} 
+            onFilter={this.handleFilter}
+            onLocate={this.handleLocate}
+          />
+  
+          <SnackBar 
+            visible={this.state.showSnackbar} 
+            textMessage={this.state.snackMessage}
+            distanceCallback={(distance)=>{this.setState({snackOffset: distance})}}
+          /> 
+          **/
         }
-        
+
       </View>
     )
   }
@@ -79,7 +76,7 @@ export default class MainScreen extends Component {
   handleLocate = () => {
     this.checkLocationPermission()
 
-    switch(this.state.permissionToUseLocation) {
+    switch (this.state.permissionToUseLocation) {
       case 'authorized':
         this.getPosition()
         return
@@ -97,7 +94,7 @@ export default class MainScreen extends Component {
   }
 
   getPosition = () => {
-    this.setState({showSnackbar: true, snackMessage: I18n.t('locating')})
+    this.setState({ showSnackbar: true, snackMessage: I18n.t('locating') })
 
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -111,8 +108,8 @@ export default class MainScreen extends Component {
       },
       (error) => {
         this.setState({
-        error: error.message, 
-        showSnackbar: false,
+          error: error.message,
+          showSnackbar: false,
         })
         this.showToast(error.message)
       },
@@ -122,15 +119,15 @@ export default class MainScreen extends Component {
   }
 
   requestLocationPermission = () => {
-    Permissions.request('location') 
-    .then(response => {
-      if(response === 'authorized') this.getPosition()
-      this.setState({ permissionToUseLocation: response })
-    })
+    Permissions.request('location')
+      .then(response => {
+        if (response === 'authorized') this.getPosition()
+        this.setState({ permissionToUseLocation: response })
+      })
   }
 
   checkLocationPermission = () => {
-    Permissions.check('location') 
+    Permissions.check('location')
       .then(response => {
         this.setState({ permissionToUseLocation: response })
       })
@@ -148,7 +145,7 @@ export default class MainScreen extends Component {
 }
 
 const SpotListWithData = graphql(allSpotsQuery, {
-  options: ({userLat, userLon, queryOffset, filter}) => ({
+  options: ({ userLat, userLon, queryOffset, filter }) => ({
     variables: {
       userLat,
       userLon,
@@ -181,4 +178,4 @@ const SpotListWithData = graphql(allSpotsQuery, {
       },
     }
   },
-}) (SpotList)
+})(SpotList)

@@ -9,9 +9,9 @@ import {
   Platform,
   Keyboard,
 } from 'react-native';
-import SafeAreaView from '../node_modules/react-navigation/src/views/SafeAreaView'
+import { SafeAreaView } from 'react-navigation';
 import withOrientation from '../node_modules/react-navigation/src/views/withOrientation'
-import TabBarIcon from '../node_modules/react-navigation/src/views/TabView/TabBarIcon'
+import TabBarIcon from '../node_modules/react-navigation-deprecated-tab-navigator/src/views/TabBarIcon'
 
 const majorVersion = parseInt(Platform.Version, 10);
 const isIos = Platform.OS === 'ios';

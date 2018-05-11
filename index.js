@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { 
-  ApolloClient, 
-  ApolloProvider,
-  createNetworkInterface,
-} from 'react-apollo'
+import { ApolloProvider } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory'
+//import ViewOverflow from 'react-native-view-overflow';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,7 +11,7 @@ import {
   View,
 } from 'react-native'
 import { ThemeProvider } from 'react-native-material-ui'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { api } from './configs/config.js'
@@ -29,82 +29,74 @@ UIManager.setLayoutAnimationEnabledExperimental &&
 export class ParkingSpots extends Component {
   createClient() {
     return new ApolloClient({
-      networkInterface: createNetworkInterface({
+      link: createHttpLink({
         uri: api,
       }),
+      cache: new InMemoryCache(),
     })
   }
-  static navigationOptions = ({ navigation, screenProps }) => ({
-    headerRight: <Icon name='settings' size={25} style={{marginRight: 15}} />,
-  })
 
   render() {
     return (
       <ApolloProvider client={this.createClient()}>
         <ThemeProvider uiTheme={uiTheme} >
-          <App/>
+          <App />
         </ThemeProvider>
       </ApolloProvider>
     )
   }
 }
 
-export const TabNavigation = TabNavigator({
-  Home: { 
+export const TabNavigation = createBottomTabNavigator({
+  Home: {
     screen: ParkingSpots,
     navigationOptions: {
       title: 'Ilmaisparkki',
       tabBarVisible: true,
-      tabBarIcon: ({tintColor}) => (
-        <Icon name='menu' size={25} style={{color: tintColor}}/>
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name='menu' size={25} style={{ color: tintColor }} />
       ),
-    } 
+    }
   },
-  Map: { 
-    screen: SpotMap, 
+  Map: {
+    screen: SpotMap,
     navigationOptions: {
       title: 'Kartta',
       tabBarVisible: true,
-      tabBarIcon: ({tintColor}) => (
+      tabBarIcon: ({ tintColor }) => (
+        //<ViewOverflow>
         <View style={styles.middleTab}>
           <View style={styles.middleTabHalfCircleBorder} />
           <View style={styles.middleTabIcon}>
-            <Icon name='local-parking' size={50} style={{color: tintColor}} />
+            <Icon name='local-parking' size={25} style={{ color: tintColor }} />
           </View>
         </View>
+        //</ViewOverflow>
       )
     }
   },
-  Faq: { 
-    screen: Faq, 
+  Faq: {
+    screen: Faq,
     navigationOptions: {
       title: 'FAQ',
       tabBarVisible: true,
-      tabBarIcon: ({tintColor}) => (
-        <Icon name='search' size={25} style={{color: tintColor}}/>
+      tabBarIcon: ({ tintColor }) => (
+        <Icon name='search' size={25} style={{ color: tintColor }} />
       ),
     }
   },
 }, {
-  tabBarOptions: {
-    showIcon: true,
-    showLabel: false,
-    activeTintColor: '#304ffe',
-    style: {
-      height: 80,
-      width: '100%',
-      backgroundColor: 'transparent',
-      position: 'absolute',
-      bottom: 0,
-    }
-  },
-  tabBarComponent: CustomTabBarBottom,
-  tabBarPosition: 'bottom',
-  animationEnabled: true,
-})
+    tabBarPosition: 'bottom',
+    animationEnabled: true,
+  })
 
-export const RootStack = StackNavigator({
-  Home: { screen: TabNavigation }
+export const RootStack = createStackNavigator({
+  Home: {
+    screen: TabNavigation,
+    navigationOptions: {
+      headerRight: <Icon name='settings' size={25} style={{ marginRight: 15 }} />,
+    }
+  }
 })
 
 const styles = StyleSheet.create({
@@ -115,7 +107,8 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 100,
     bottom: 0,
     backgroundColor: '#F7F7F7',
-    position: 'relative'
+    position: 'relative',
+    overflow: 'visible',
   },
   middleTabHalfCircleBorder: {
     width: 80,
@@ -127,11 +120,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 2,
     borderBottomWidth: 0,
     borderColor: 'rgba(48,79,254, .3)',
-    position: 'absolute'
+    position: 'absolute',
+    overflow: 'visible',
   },
   middleTabIcon: {
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'visible',
     height: 80,
     width: 80,
   }
