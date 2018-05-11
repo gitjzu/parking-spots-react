@@ -35,7 +35,7 @@ export class ParkingSpots extends Component {
     })
   }
   static navigationOptions = ({ navigation, screenProps }) => ({
-    headerRight: <Icon name='more-vert' size={25} style={{marginRight: 15}} />,
+    headerRight: <Icon name='settings' size={25} style={{marginRight: 15}} />,
   })
 
   render() {
