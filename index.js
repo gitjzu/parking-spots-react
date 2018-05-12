@@ -3,7 +3,6 @@ import { ApolloProvider } from 'react-apollo'
 import { ApolloClient } from 'apollo-client'
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory'
-//import ViewOverflow from 'react-native-view-overflow';
 import {
   AppRegistry,
   StyleSheet,
@@ -64,14 +63,12 @@ export const TabNavigation = createBottomTabNavigator({
       title: 'Kartta',
       tabBarVisible: true,
       tabBarIcon: ({ tintColor }) => (
-        //<ViewOverflow>
         <View style={styles.middleTab}>
           <View style={styles.middleTabHalfCircleBorder} />
           <View style={styles.middleTabIcon}>
-            <Icon name='local-parking' size={25} style={{ color: tintColor }} />
+            <Icon name='local-parking' size={50} style={{ color: tintColor }} />
           </View>
         </View>
-        //</ViewOverflow>
       )
     }
   },
@@ -86,8 +83,19 @@ export const TabNavigation = createBottomTabNavigator({
     }
   },
 }, {
-    tabBarPosition: 'bottom',
-    animationEnabled: true,
+    tabBarOptions: {
+      showIcon: true,
+      showLabel: false,
+      activeTintColor: '#304ffe',
+      style: {
+        height: 80,
+        width: '100%',
+        backgroundColor: 'transparent',
+        position: 'absolute',
+        bottom: 0,
+      }
+    },
+    tabBarComponent: CustomTabBarBottom
   })
 
 export const RootStack = createStackNavigator({
@@ -108,7 +116,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: '#F7F7F7',
     position: 'relative',
-    overflow: 'visible',
   },
   middleTabHalfCircleBorder: {
     width: 80,
@@ -121,12 +128,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     borderColor: 'rgba(48,79,254, .3)',
     position: 'absolute',
-    overflow: 'visible',
   },
   middleTabIcon: {
     alignItems: 'center',
     justifyContent: 'center',
-    overflow: 'visible',
     height: 80,
     width: 80,
   }
