@@ -1,6 +1,6 @@
 # parking-spots-react
 
-*!!!See new parking-spots-react-v2 repo for the newest version of the app (made with Expo)!!!*
+*!!!See new [parking-spots-react-v2](https://github.com/gitjzu/parking-spots-react-v2) repo for the newest version of the app (made with Expo)!!!*
 
 Simple React Native based Android application to search for the nearest free long term (24h) parking spots in downtown Helsinki area
 
